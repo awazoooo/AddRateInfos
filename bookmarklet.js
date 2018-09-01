@@ -1,0 +1,1 @@
+javascript:(function(d,s){s=d.createElement('script');s.src='https://awazoooo.github.io/addRateInfos/addRateInfos.js';d.body.appendChild(s);s=d.createElement('script');s.src='https://awazoooo.github.io/addRateInfos/constant.js';d.body.appendChild(s);})(document);
