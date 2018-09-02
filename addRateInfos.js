@@ -111,6 +111,7 @@
     const main = function() {
         const url = location.href;
         if (url == ONGEKI_PREMIUM_RATE_TARGET_URL){
+            alert('定数とレート値を計算します');
             addConstantAndRate();
             console.log('定数とレート値追加中...');
         } else {
