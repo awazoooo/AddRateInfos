@@ -97,22 +97,111 @@
         const constantBox = makeInfoBox(scoreBox.cloneNode(true), "MUSIC CONSTANT", musicConstant);
         const rateBox = makeInfoBox(scoreBox.cloneNode(true), "MUSIC RATE", musicRate);
 
-        // Boxを追加
+        // HTMLにBoxを追加
         x.appendChild(constantBox);
         x.appendChild(rateBox);
+
+        // 集計処理のために単曲レート値を返す
+        return musicRate;
+    }
+
+    // ベスト枠，リセント枠の数
+    const NBEST = 30;
+    const NRECENT = 10;
+
+    // ベスト平均とか到達可能とかを計算
+    const calcParams = function(d){
+        const bestAve = d.bestSum / NBEST;
+        const recentAve = d.recentSum / NRECENT;
+        const reachable = (d.bestSum + d.topRate * 10) / (NBEST + NRECENT);
+        return { bestAve: bestAve, recentAve: recentAve, reachable: reachable };
+    }
+
+    // ベスト平均などを表示するBox
+    const makeParamBox = function(box, params){
+        // 各パラメータを表示するBox
+        const detailBox = box.getElementsByClassName('w_260')[0];
+
+        // 適当なboxをコピーして使用
+        const bestAveBox = makeInfoBox(detailBox.cloneNode(true), "ベスト枠平均", round2(params.bestAve));
+        const recentAveBox = makeInfoBox(detailBox.cloneNode(true), "リセント枠平均", round2(params.recentAve));
+        const reachableBox = makeInfoBox(detailBox.cloneNode(true), "到達可能レート", round2(params.reachable));
+
+        // 元のTECHNICAL HIGHSCOREを消す
+        detailBox.remove();
+
+        // ベスト平均などを追加
+        box.appendChild(bestAveBox);
+        box.appendChild(recentAveBox);
+        box.appendChild(reachableBox);
+
+        return box;
     }
 
     // レーティング対象曲のページに定数とレート値を追加
     const addConstantAndRate = function(){
+        // 楽曲Boxを取得
         const musics = document.getElementsByClassName('basic_btn');
-        [].forEach.call(musics, function(x){ modifyOneMusicHTML(x) });
+
+        // ベスト平均などを表示するBox
+        // 最初の楽曲Boxを雑にコピー
+        let paramBox = musics[0].cloneNode(true);
+        // レベル表示を消す
+        paramBox.getElementsByClassName('score_level')[0].textContent = ' ';
+        // 曲表示の部分を書き換え
+        paramBox.getElementsByClassName('music_label')[0].textContent = 'レート情報';
+
+        // ベスト枠とリセント枠の数は40のはず(十分にプレイしていれば)
+        if (musics.length != NBEST + NRECENT){
+            throw new Error("ベスト枠+リセント枠が不足しています");
+        }
+
+        let acc = { bestSum: 0.0, recentSum: 0.0, topRate: 0.0 };
+
+        // ベスト枠のBoxについての処理
+        // 返り値でベスト枠の集計も
+        
+        for(let i = 0; i < NBEST; i += 1){
+            let rate = modifyOneMusicHTML(musics[i]);
+            // ベスト枠の一番上は曲別最大レート
+            if (i == 0)
+                acc.topRate = rate;
+
+            acc.bestSum += rate;
+        }
+
+        // リセント枠のBoxについての処理
+        // 返り値でリセント枠の集計も
+        for(let i = NBEST; i < NBEST + NRECENT; i += 1){
+            let rate = modifyOneMusicHTML(musics[i]);
+            acc.recentSum += rate;
+        }
+
+        // ベスト平均などを計算
+        const params = calcParams(acc);
+        paramBox = makeParamBox(paramBox, params);
+        paramBox.classList.remove("master_score_back");
+
+        
+        // ベスト枠平均などのパラメータを「レーティング対象曲(ベスト)」の上に追加
+        // 追加する場所の親を取得
+        const ref = document.getElementsByClassName('main_wrapper')[0];
+        // 追加する場所の下を取得
+        const underRef = document.getElementsByClassName('m_15')[1];
+        // 追加
+        ref.insertBefore(paramBox, underRef);
     }
 
     const main = function() {
         const url = location.href;
         if (url == ONGEKI_PREMIUM_RATE_TARGET_URL){
             alert('定数とレート値を計算します');
-            addConstantAndRate();
+            try {
+                addConstantAndRate();
+            } catch(e){ // ベスト枠+リセント枠が40でないときは例外発生
+                alert(e);
+                return;
+            }
             console.log('定数とレート値追加中...');
         } else {
             alert('「プレイヤーデータ詳細」から「レーティング対象曲」タブを選択して下さい」');
