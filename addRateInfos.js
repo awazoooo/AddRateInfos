@@ -1,8 +1,10 @@
 (function (){
     const ONGEKI_PREMIUM_RATE_TARGET_URL = "https://ongeki-net.com/ongeki-mobile/home/ratingTargetMusic/";
-    const DEFAULTVERSION = 'origin'; // 現在のバージョン
-    const TOOLNAME = 'レートの情報追加ツール';
+    const TOOLNAME = 'レート情報追加ツール';
 
+
+    /* 定数計算関連 */
+    
     const RANKSSSplus = 1007500;
     const RANKSSS     = 1000000;
     const RANKSS      =  990000;
@@ -10,27 +12,24 @@
     const RANKAAA     =  940000;
     const RANKAA      =  900000;
 
-    // TODO: RANKAAA以下の場合の追加
+    // TODO: RANKAの場合の追加
     const calcRate = function(constant, score){
-        if (score >= RANKSSSplus){
+        if (score >= RANKSSSplus)
             return constant + 2.0;
-        } else if (score >= RANKSSS){
+        else if (score >= RANKSSS)
             return constant + 1.5 + (score - RANKSSS) / 15000;
-        } else if (score >= RANKSS){
+        else if (score >= RANKSS)
             return constant + 1.0 + (score - RANKSS) / 20000;
-        } else if (score >= RANKS){
+        else if (score >= RANKS)
             return constant + (score - RANKS) / 20000;
-        } // else if (score >= RANKAAA){
-        //     return constant - 1.5 + (score - RANKAAA) * 3 / 50000;
-        // } else if (score >= RANKAA){
-        //     return constant - 3.0 + (score - RANKAA) * 3 / 50000;
-        // } else if (score >= RANKA) {
-        //     return constant - 5.0 + (score - RANKA) / 12500;
-        // } 
-        else {
+        else if (score >= RANKAA)
+            return constant - (RANKS - score) * 175 / 100;
+        else 
             return 0.0;
-        }
     }
+
+
+    /* utilities */
 
     // 難易度に対応する数値を返す
     // diffOfString("master") -> 3
@@ -54,7 +53,7 @@
     const getConstant = function(title, diff){
         const idiff = diffOfString(diff);
         for (let item of constantTable){
-            if (item.title == title && item.difficulty == idiff){
+            if (item.title == title && item.diff == idiff){
                 return item.constant;
             }
         }
@@ -71,6 +70,9 @@
     const removeComma = function(str){
         return str.split(',').join('');
     }
+
+
+    /* HTML操作 */
 
     // boxにstr:valueという情報を追加して返す
     const makeInfoBox = function(box, str, value) {
@@ -105,16 +107,18 @@
         return musicRate;
     }
 
-    // ベスト枠，リセント枠の数
+    // ベスト枠，リセント枠，新曲枠の数
     const NBEST = 30;
     const NRECENT = 10;
+    const NNEWMUSIC = 15;
 
     // ベスト平均とか到達可能とかを計算
     const calcParams = function(d){
         const bestAve = d.bestSum / NBEST;
         const recentAve = d.recentSum / NRECENT;
-        const reachable = (d.bestSum + d.topRate * 10) / (NBEST + NRECENT);
-        return { bestAve: bestAve, recentAve: recentAve, reachable: reachable };
+        const newAve = d.newSum / NNEWMUSIC;
+        const reachable = (d.bestSum + d.topRate * 10 + d.newSum) / (NBEST + NRECENT + NNEWMUSIC);
+        return { bestAve: bestAve, recentAve: recentAve, newAve: newAve, reachable: reachable };
     }
 
     // ベスト平均などを表示するBox
@@ -123,6 +127,7 @@
         const detailBox = box.getElementsByClassName('w_260')[0];
 
         // 適当なboxをコピーして使用
+        const newAveBox = makeInfoBox(detailBox.cloneNode(true), "新曲枠平均", round2(params.newAve));
         const bestAveBox = makeInfoBox(detailBox.cloneNode(true), "ベスト枠平均", round2(params.bestAve));
         const recentAveBox = makeInfoBox(detailBox.cloneNode(true), "リセント枠平均", round2(params.recentAve));
         const reachableBox = makeInfoBox(detailBox.cloneNode(true), "到達可能レート", round2(params.reachable));
@@ -131,6 +136,7 @@
         detailBox.remove();
 
         // ベスト平均などを追加
+        box.appendChild(newAveBox);
         box.appendChild(bestAveBox);
         box.appendChild(recentAveBox);
         box.appendChild(reachableBox);
@@ -151,20 +157,21 @@
         // 曲表示の部分を書き換え
         paramBox.getElementsByClassName('music_label')[0].textContent = 'レート情報';
 
-        // ベスト枠とリセント枠の数は40のはず(十分にプレイしていれば)
-        if (musics.length != NBEST + NRECENT){
-            throw new Error("ベスト枠+リセント枠が不足しています");
-        }
+        let acc = { bestSum: 0.0, recentSum: 0.0, newSum: 0.0, topRate: 0.0 };
 
-        let acc = { bestSum: 0.0, recentSum: 0.0, topRate: 0.0 };
+        // 新曲枠のBoxについての処理
+        // 返り値で新曲枠の集計も
+        for(let i = 0; i < NNEWMUSIC; i += 1){
+            let rate = modifyOneMusicHTML(musics[i]);
+            acc.newSum += rate;
+        }
 
         // ベスト枠のBoxについての処理
         // 返り値でベスト枠の集計も
-        
-        for(let i = 0; i < NBEST; i += 1){
+        for(let i = NNEWMUSIC; i < NNEWMUSIC + NBEST; i += 1){
             let rate = modifyOneMusicHTML(musics[i]);
             // ベスト枠の一番上は曲別最大レート
-            if (i == 0)
+            if (i == NNEWMUSIC)
                 acc.topRate = rate;
 
             acc.bestSum += rate;
@@ -172,7 +179,7 @@
 
         // リセント枠のBoxについての処理
         // 返り値でリセント枠の集計も
-        for(let i = NBEST; i < NBEST + NRECENT; i += 1){
+        for(let i = NNEWMUSIC + NBEST; i < NNEWMUSIC + NBEST + NRECENT; i += 1){
             let rate = modifyOneMusicHTML(musics[i]);
             acc.recentSum += rate;
         }
@@ -196,12 +203,7 @@
         const url = location.href;
         if (url == ONGEKI_PREMIUM_RATE_TARGET_URL){
             alert('定数とレート値を計算します');
-            try {
-                addConstantAndRate();
-            } catch(e){ // ベスト枠+リセント枠が40でないときは例外発生
-                alert(e);
-                return;
-            }
+            addConstantAndRate();
             console.log('定数とレート値追加中...');
         } else {
             alert('「プレイヤーデータ詳細」から「レーティング対象曲」タブを選択して下さい」');
