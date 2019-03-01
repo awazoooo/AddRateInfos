@@ -13,7 +13,7 @@
   * スコアランクAA？以上の曲に対応
 
 ## ブックマークレット
-```javascript:(function(d,s){s=d.createElement('script');s.src='https://awazoooo.github.io/addRateInfos/constant.js';d.body.appendChild(s);s=d.createElement('script');s.src='https://awazoooo.github.io/addRateInfos/addRateInfos.js';d.body.appendChild(s);})(document);```
+```javascript:(function(d,s){s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/constant.js';d.body.appendChild(s);s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/addRateInfos.js';d.body.appendChild(s);})(document);```
 
 
 ## 更新履歴
