@@ -8,9 +8,11 @@
   3. ブックマークレットを起動
 
 ## 注意
-  * そもそも自分が使うために作った
+  * 自分が使うために雑に作った
   * スタンダードコースには未対応(できないこともないけどプレミアムコースでしか見れないようになってるしね...)
   * スコアランクAA？以上の曲に対応
+  * 新曲や低難易度(主に11+以下)は定数が判明してないものもあるため，その難易度の最低値の定数として計算します
+    * 例: 11+は11.7，12は12.0
 
 ## ブックマークレット
 ```javascript:(function(d,s){s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/constant.js';d.body.appendChild(s);s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/addRateInfos.js';d.body.appendChild(s);})(document);```

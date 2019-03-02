@@ -24,7 +24,7 @@
         else if (score >= RANKS)
             return constant + (score - RANKS) / 20000;
         else if (score >= RANKAA)
-            return constant - 4.0 + (score - RANKAA) * 175 / 100;
+            return constant - (RANKS - score) / 175 / 100;
         else 
             return 0.0;
     }
@@ -183,6 +183,12 @@
             let rate = modifyOneMusicHTML(musics[i]);
             acc.recentSum += rate;
         }
+
+        // 候補曲のBoxについての処理
+        // 単にレート値と定数を表示するだけ
+        // 返り値は捨てる
+        for(let i = NNEWMUSIC + NBEST + NRECENT; i < musics.length; i += 1)
+            modifyOneMusicHTML(musics[i])
 
         // ベスト平均などを計算
         const params = calcParams(acc);
