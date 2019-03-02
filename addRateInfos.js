@@ -13,6 +13,7 @@
     const RANKAA      =  900000;
 
     // TODO: RANKAの場合の追加
+    // MEMO: RANKAAとAAAは自力で確かめられない
     const calcRate = function(constant, score){
         if (score >= RANKSSSplus)
             return constant + 2.0;
@@ -23,7 +24,7 @@
         else if (score >= RANKS)
             return constant + (score - RANKS) / 20000;
         else if (score >= RANKAA)
-            return constant - (RANKS - score) * 175 / 100;
+            return constant - 4.0 + (score - RANKAA) * 175 / 100;
         else 
             return 0.0;
     }
@@ -32,7 +33,6 @@
     /* utilities */
 
     // 難易度に対応する数値を返す
-    // diffOfString("master") -> 3
     // TODO: lunaticで合っているか調べたい
     const diffOfString = function(str) {
         switch (str){
