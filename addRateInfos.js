@@ -104,7 +104,7 @@
         x.appendChild(rateBox);
 
         // 集計処理のために単曲レート値を返す
-        return musicRate;
+        return {rate: musicRate, diff: diff}
     }
 
     // ベスト枠，リセント枠，新曲枠の数
@@ -162,31 +162,35 @@
         // 新曲枠のBoxについての処理
         // 返り値で新曲枠の集計も
         for(let i = 0; i < NNEWMUSIC; i += 1){
-            let rate = modifyOneMusicHTML(musics[i]);
-            acc.newSum += rate;
+            let info = modifyOneMusicHTML(musics[i]);
+            acc.newSum += info.rate;
         }
 
         // ベスト枠のBoxについての処理
-        // 返り値でベスト枠の集計も
+        // ベスト枠の集計も行う
+        let itop = NNEWMUSIC;
         for(let i = NNEWMUSIC; i < NNEWMUSIC + NBEST; i += 1){
-            let rate = modifyOneMusicHTML(musics[i]);
+            let info = modifyOneMusicHTML(musics[i]);
             // ベスト枠の一番上は曲別最大レート
-            if (i == NNEWMUSIC)
-                acc.topRate = rate;
+            // ただしLunaticは除く
+            if (i == itop && info.diff != 4)
+                acc.topRate = info.rate;
+            else
+                itop += 1;
 
-            acc.bestSum += rate;
+            acc.bestSum += info.rate;
         }
 
         // リセント枠のBoxについての処理
-        // 返り値でリセント枠の集計も
+        // リセント枠の集計も行う
         for(let i = NNEWMUSIC + NBEST; i < NNEWMUSIC + NBEST + NRECENT; i += 1){
-            let rate = modifyOneMusicHTML(musics[i]);
-            acc.recentSum += rate;
+            let info = modifyOneMusicHTML(musics[i]);
+            acc.recentSum += info.rate;
         }
 
         // 候補曲のBoxについての処理
         // 単にレート値と定数を表示するだけ
-        // 返り値は捨てる
+        // modifyOneMusicHTMLの返り値は捨てる
         for(let i = NNEWMUSIC + NBEST + NRECENT; i < musics.length; i += 1)
             modifyOneMusicHTML(musics[i])
 
