@@ -1,4 +1,203 @@
 (function (){
+
+    /* 譜面定数データ */
+    // オンゲキスコアツールに感謝
+    // https://ongeki-score.net/music
+    // データ提供者の方々に感謝
+    /* 
+       Twitter@Rinsaku471
+       Twitter@RKS49019722
+       Twitter@masa_9713 
+    */
+
+    // 3/2作成
+    const constantTable = [
+        {title: "Opfer", diff: 3, constant: 14.9},
+        {title: "Titania", diff: 3, constant: 14.9},
+        {title: "YURUSHITE", diff: 3, constant: 14.6},
+        {title: "怒槌", diff: 3, constant: 14.5},
+        {title: "混沌を越えし我らが神聖なる調律主を讃えよ", diff: 3, constant: 14.5},
+        {title: "MEGATON BLAST", diff: 3, constant: 14.5},
+        {title: "神威", diff: 3, constant: 14.3},
+        {title: "エンドマークに希望と涙を添えて", diff: 3, constant: 14.2},
+        {title: "Dazzle hop", diff: 3, constant: 14.2},
+        {title: "Everlasting Today", diff: 3, constant: 14.1},
+        {title: "7thSense", diff: 3, constant: 14.0},
+        {title: "No Remorse", diff: 4, constant: 14.0},
+        {title: "初音ミクの激唱", diff: 3, constant: 13.9},
+        {title: "初音ミクの激唱", diff: 4, constant: 13.9},
+        {title: "閃鋼のブリューナク", diff: 3, constant: 13.9},
+        {title: "GOODRAGE", diff: 3, constant: 13.9},
+        {title: "ナイト・オブ・ナイツ", diff: 4, constant: 13.8},
+        {title: "Oshama Scramble!", diff: 3, constant: 13.8},
+        {title: "Ai Nov", diff: 3, constant: 13.8},
+        {title: "カミサマネジマキ", diff: 3, constant: 13.8},
+        {title: "Calamity Fortune", diff: 3, constant: 13.8},
+        {title: "ぼくらの16bit戦争", diff: 3, constant: 13.7},
+        {title: "Destiny Runner", diff: 3, constant: 13.7},
+        {title: "最終鬼畜妹フランドール・Ｓ", diff: 3, constant: 13.7},
+        {title: "AMAZING MIGHTYYYY!!!!", diff: 3, constant: 13.7},
+        {title: "Halcyon", diff: 3, constant: 13.6},
+        {title: "Dolphika", diff: 3, constant: 13.6},
+        {title: "Maqrite", diff: 3, constant: 13.6},
+        {title: "クイーンオブハート", diff: 3, constant: 13.6},
+        {title: "Gate of Doom", diff: 3, constant: 13.5},
+        {title: "今ぞ♡崇め奉れ☆オマエらよ！！～姫の秘メタル渇望～", diff: 3, constant: 13.5},
+        {title: "Sword of Secret", diff: 3, constant: 13.5},
+        {title: "Brain Power", diff: 3, constant: 13.4},
+        {title: "We Gonna Journey", diff: 3, constant: 13.4},
+        {title: "Kattobi KEIKYU Rider", diff: 3, constant: 13.4},
+        {title: "Opfer", diff: 2, constant: 13.3},
+        {title: "Titania", diff: 2, constant: 13.3},
+        {title: "Cyberozar", diff: 3, constant: 13.2},
+        {title: "幸せになれる隠しコマンドがあるらしい", diff: 3, constant: 13.2},
+        {title: "TAKE ON THE WORLD", diff: 3, constant: 13.2},
+        {title: "MEGATON BLAST", diff: 2, constant: 13.2},
+        {title: "脳漿炸裂ガール", diff: 3, constant: 13.1},
+        {title: "ブツメツビーターズ", diff: 3, constant: 13.1},
+        {title: "アンハッピーリフレイン", diff: 3, constant: 13.1},
+        {title: "ようこそジャパリパークへ", diff: 4, constant: 13.0},
+        {title: "鬼KYOKAN", diff: 3, constant: 13.0},
+        {title: "幻想のサテライト", diff: 3, constant: 13.0},
+        {title: "Paqqin", diff: 3, constant: 13.0},
+        {title: "ロボットプラネットユートピア", diff: 3, constant: 13.0},
+        {title: "天火明命", diff: 3, constant: 12.9},
+        {title: "oboro", diff: 3, constant: 12.9},
+        {title: "P！P！P！P！がおー!!", diff: 3, constant: 12.9},
+        {title: "Opera of the wasteland", diff: 3, constant: 12.9},
+        {title: "ゴーカ！ごーかい！？ファントムシーフ！", diff: 3, constant: 12.9},
+        {title: "混沌を越えし我らが神聖なる調律主を讃えよ", diff: 2, constant: 12.9},
+        {title: "Link with U", diff: 3, constant: 12.9},
+        {title: "TeA", diff: 3, constant: 12.9},
+        {title: "本能的 Survivor", diff: 3, constant: 12.9},
+        {title: "sweet little sister", diff: 3, constant: 12.8},
+        {title: "Hyper Active", diff: 3, constant: 12.8},
+        {title: "ロッキンピンクモンスター", diff: 3, constant: 12.8},
+        {title: "What color...", diff: 3, constant: 12.8},
+        {title: "God knows...", diff: 3, constant: 12.8},
+        {title: "時の冒険者", diff: 3, constant: 12.8},
+        {title: "ロキ", diff: 3, constant: 12.8},
+        {title: "DAYBREAK FRONTLINE", diff: 3, constant: 12.8},
+        {title: "Energy Booster ～ 上海紅茶館", diff: 3, constant: 12.7},
+        {title: "れみりあ☆デスティニー", diff: 3, constant: 12.7},
+        {title: "Äventyr", diff: 3, constant: 12.7},
+        {title: "GAME IS LIFE", diff: 3, constant: 12.7},
+        {title: "チュルリラ・チュルリラ・ダッダッダ！", diff: 3, constant: 12.7},
+        {title: "怒槌", diff: 2, constant: 12.7},
+        {title: "ですのっ！White & Black", diff: 3, constant: 12.7},
+        {title: "ヒバナ", diff: 3, constant: 12.7},
+        {title: "fulgente", diff: 3, constant: 12.7},
+        {title: "ナイト・オブ・ナイツ", diff: 3, constant: 12.6},
+        {title: "The Formula", diff: 3, constant: 12.6},
+        {title: "Here We Go", diff: 3, constant: 12.6},
+        {title: "SWEET SHAKE!!", diff: 3, constant: 12.6},
+        {title: "GranFatalité", diff: 3, constant: 12.6},
+        {title: "Dragoon", diff: 3, constant: 12.6},
+        {title: "Jump!! Jump!! Jump!!", diff: 3, constant: 12.6},
+        {title: "ファッとして桃源郷", diff: 3, constant: 12.5},
+        {title: "かくしん的☆めたまるふぉ～ぜっ!", diff: 3, constant: 12.5},
+        {title: "六兆年と一夜物語", diff: 3, constant: 12.5},
+        {title: "キミノヨゾラ哨戒班", diff: 3, constant: 12.5},
+        {title: "グリーンライツ・セレナーデ", diff: 3, constant: 12.5},
+        {title: "Bad Apple!! feat.nomico", diff: 3, constant: 12.5},
+        {title: "Red Battle", diff: 3, constant: 12.5},
+        {title: "Hey-day狂騒曲（カプリチオ）", diff: 3, constant: 12.5},
+        {title: "Redo", diff: 3, constant: 12.5},
+        {title: "超電磁少女Days", diff: 3, constant: 12.5},
+        {title: "木彫り鯰と右肩ゾンビ", diff: 3, constant: 12.4},
+        {title: "四次元跳躍機関", diff: 3, constant: 12.4},
+        {title: "Mare Maris", diff: 3, constant: 12.4},
+        {title: "月に叢雲華に風", diff: 3, constant: 12.4},
+        {title: "STEP by STEP UP↑↑↑↑", diff: 3, constant: 12.4},
+        {title: "Link of Destiny", diff: 3, constant: 12.4},
+        {title: "Grand symphony", diff: 3, constant: 12.4},
+        {title: "おこちゃま戦争", diff: 3, constant: 12.3},
+        {title: "砂の惑星 feat. HATSUNE MIKU", diff: 3, constant: 12.3},
+        {title: "ＧＯ！ＧＯ！ラブリズム♥", diff: 3, constant: 12.3},
+        {title: "Dazzle hop", diff: 2, constant: 12.3},
+        {title: "YURUSHITE", diff: 2, constant: 12.3},
+        {title: "ゆら・ゆらRing-Dong-Dance", diff: 3, constant: 12.3},
+        {title: "HARMONIZE", diff: 3, constant: 12.3},
+        {title: "Love is MY RAIL", diff: 3, constant: 12.3},
+        {title: "流星", diff: 3, constant: 12.3},
+        {title: "Los! Los! Los!", diff: 3, constant: 12.2},
+        {title: "SAVIOR OF SONG", diff: 3, constant: 12.2},
+        {title: "ゴーストルール", diff: 3, constant: 12.2},
+        {title: "心象蜃気楼", diff: 3, constant: 12.2},
+        {title: "天ノ弱", diff: 3, constant: 12.1},
+        {title: "ヒビカセ", diff: 3, constant: 12.1},
+        {title: "Everlasting Today", diff: 2, constant: 12.1},
+        {title: "sister's noise", diff: 3, constant: 12.1},
+        {title: "回レ！雪月花", diff: 3, constant: 12.0},
+        {title: "Grip & Break down !!", diff: 3, constant: 12.0},
+        {title: "アクアテラリウム", diff: 3, constant: 12.0},
+        {title: "オモイヨシノ", diff: 3, constant: 12.0},
+        {title: "神威", diff: 2, constant: 12.0},
+        {title: "Zest of Blue", diff: 3, constant: 12.0},
+        {title: "タテマエと本心の大乱闘", diff: 3, constant: 12.0},
+        {title: "TOMORROW", diff: 3, constant: 12.0},
+        {title: "こころここから", diff: 3, constant: 12.0},
+        {title: "ようこそジャパリパークへ", diff: 3, constant: 11.9},
+        {title: "Red “reduction division” -crossroads version-", diff: 3, constant: 11.9},
+        {title: "いーあるふぁんくらぶ", diff: 3, constant: 11.9},
+        {title: "CiRCLING", diff: 3, constant: 11.9},
+        {title: "Calamity Fortune", diff: 2, constant: 11.9},
+        {title: "千本桜", diff: 3, constant: 11.8},
+        {title: "エンドマークに希望と涙を添えて", diff: 2, constant: 11.8},
+        {title: "シュガーソングとビターステップ", diff: 3, constant: 11.7},
+        {title: "BLACK SHOUT", diff: 3, constant: 11.7},
+        {title: "ブリキノダンス", diff: 3, constant: 11.7},
+        {title: "7thSense", diff: 2, constant: 11.7},
+        {title: "カミサマネジマキ", diff: 2, constant: 11.7},
+        {title: "only my railgun", diff: 3, constant: 11.7},
+        {title: "This game", diff: 3, constant: 11.6},
+        {title: "GOODRAGE", diff: 2, constant: 11.5},
+        {title: "Perfect Shining!!", diff: 3, constant: 11.4},
+        {title: "みんな Happy!!", diff: 3, constant: 11.4},
+        {title: "わたし音頭", diff: 3, constant: 11.4},
+        {title: "鳥の詩", diff: 3, constant: 11.0},
+        {title: "That Is How I Roll!", diff: 3, constant: 11.0},
+        {title: "檄!帝国華撃団", diff: 3, constant: 11.0},
+        {title: "Halcyon", diff: 2, constant: 11.0},
+        {title: "Hyper Active", diff: 2, constant: 11.0},
+        {title: "Gate of Doom", diff: 2, constant: 11.0},
+        {title: "First Twinkle", diff: 3, constant: 11.0},
+        {title: "STARTLINER", diff: 3, constant: 11.0},
+        {title: "Ai Nov", diff: 2, constant: 11.0},
+        {title: "secret base ～君がくれたもの～ (10 years after Ver.)", diff: 3, constant: 11.0},
+        {title: "カンペキWill", diff: 3, constant: 11.0},
+        {title: "アンハッピーリフレイン", diff: 2, constant: 11.0},
+        {title: "SAKURA", diff: 3, constant: 10.7},
+        {title: "しゅわりん☆どり〜みん", diff: 3, constant: 10.7},
+        {title: "初音ミクの激唱", diff: 2, constant: 10.7},
+        {title: "AMAZING MIGHTYYYY!!!!", diff: 2, constant: 10.7},
+        {title: "Kattobi KEIKYU Rider", diff: 2, constant: 10.7},
+        {title: "Dolphika", diff: 2, constant: 10.7},
+        {title: "ロッキンピンクモンスター", diff: 2, constant: 10.7},
+        {title: "連れ去って・閉じ込めて・好きにして", diff: 3, constant: 10.7},
+        {title: "君の知らない物語", diff: 3, constant: 10.0},
+        {title: "ときめきエクスペリエンス！", diff: 3, constant: 10.0},
+        {title: "えがおのオーケストラっ！", diff: 3, constant: 10.0},
+        {title: "脳漿炸裂ガール", diff: 2, constant: 10.0},
+        {title: "鬼KYOKAN", diff: 2, constant: 10.0},
+        {title: "ぼくらの16bit戦争", diff: 2, constant: 10.0},
+        {title: "幻想のサテライト", diff: 2, constant: 10.0},
+        {title: "Destiny Runner", diff: 2, constant: 10.0},
+        {title: "最終鬼畜妹フランドール・Ｓ", diff: 2, constant: 10.0},
+        {title: "Oshama Scramble!", diff: 2, constant: 10.0},
+        {title: "Cyberozar", diff: 2, constant: 10.0},
+        {title: "Paqqin", diff: 2, constant: 10.0},
+        {title: "We Gonna Journey", diff: 2, constant: 10.0},
+        {title: "閃鋼のブリューナク", diff: 2, constant: 10.0},
+        {title: "P！P！P！P！がおー!!", diff: 2, constant: 10.0},
+        {title: "チュルリラ・チュルリラ・ダッダッダ！", diff: 2, constant: 10.0},
+        {title: "ロボットプラネットユートピア", diff: 2, constant: 10.0},
+        {title: "クイーンオブハート", diff: 2, constant: 10.0},
+        {title: "TAKE ON THE WORLD", diff: 2, constant: 10.0},
+        {title: "TeA", diff: 2, constant: 10.0},
+    ];
+
+
     const ONGEKI_PREMIUM_RATE_TARGET_URL = "https://ongeki-net.com/ongeki-mobile/home/ratingTargetMusic/";
     const TOOLNAME = 'レート情報追加ツール';
 
@@ -25,7 +224,7 @@
             return constant + (score - RANKS) / 20000;
         else if (score >= RANKAA)
             return constant - (RANKS - score) / 175 / 100;
-        else 
+        else // rankA以下は計算方法がわからない
             return 0.0;
     }
 
@@ -33,7 +232,6 @@
     /* utilities */
 
     // 難易度に対応する数値を返す
-    // TODO: lunaticで合っているか調べたい
     const diffOfString = function(str) {
         switch (str){
         case "lunatic":
@@ -44,7 +242,7 @@
             return 2;
         case "advanced":
             return 1;
-        default:
+        default: // basic
             return 0
         }
     }
@@ -213,8 +411,8 @@
         const url = location.href;
         if (url == ONGEKI_PREMIUM_RATE_TARGET_URL){
             alert('定数とレート値を計算します');
-            addConstantAndRate();
             console.log('定数とレート値追加中...');
+            addConstantAndRate();
         } else {
             alert('「プレイヤーデータ詳細」から「レーティング対象曲」タブを選択して下さい」');
             return;
