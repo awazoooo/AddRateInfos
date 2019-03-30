@@ -38,7 +38,7 @@
         {title: "Destiny Runner", diff: 3, constant: 13.7},
         {title: "最終鬼畜妹フランドール・Ｓ", diff: 3, constant: 13.7},
         {title: "AMAZING MIGHTYYYY!!!!", diff: 3, constant: 13.7},
-        {title: "Sakura Fubuki", diff: 3, constant: 13.7},
+        {title: "Sakura Fubuki", diff: 4, constant: 13.7},
         {title: "初音ミクの消失", diff: 3, constant: 13.7},
         {title: "Halcyon", diff: 3, constant: 13.6},
         {title: "Dolphika", diff: 3, constant: 13.6},
