@@ -47,6 +47,7 @@
         {title: "Gate of Doom", diff: 3, constant: 13.5},
         {title: "Chelly spLash♪♪", diff: 3, constant: 13.5},
         {title: "今ぞ♡崇め奉れ☆オマエらよ！！～姫の秘メタル渇望～", diff: 3, constant: 13.5},
+        {title: "オンゲキ全域★アカネサマ？", diff: 3, constant: 13.5},
         {title: "Sword of Secret", diff: 3, constant: 13.5},
         {title: "Brain Power", diff: 3, constant: 13.4},
         {title: "We Gonna Journey", diff: 3, constant: 13.4},
