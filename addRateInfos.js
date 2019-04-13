@@ -4,10 +4,11 @@
     // オンゲキスコアツールに感謝
     // https://ongeki-score.net/music
     // データ提供者の方々に感謝
-    /* 
-       Twitter@Rinsaku471
-       Twitter@RKS49019722
-       Twitter@masa_9713 
+    /*
+       データ提供者Twitter
+       * @Rinsaku471
+       * @RKS49019722
+       * @masa_9713
     */
 
     // 3/2作成
@@ -40,6 +41,7 @@
         {title: "AMAZING MIGHTYYYY!!!!", diff: 3, constant: 13.7},
         {title: "Sakura Fubuki", diff: 4, constant: 13.7},
         {title: "初音ミクの消失", diff: 3, constant: 13.7},
+        {title: "アリサのテーマ", diff: 3, constant: 13.6},
         {title: "Halcyon", diff: 3, constant: 13.6},
         {title: "Dolphika", diff: 3, constant: 13.6},
         {title: "Maqrite", diff: 3, constant: 13.6},
@@ -95,6 +97,7 @@
         {title: "ですのっ！White & Black", diff: 3, constant: 12.7},
         {title: "ヒバナ", diff: 3, constant: 12.7},
         {title: "fulgente", diff: 3, constant: 12.7},
+        {title: "High Free Spirits", diff: 3, constant: 12.6},
         {title: "ナイト・オブ・ナイツ", diff: 3, constant: 12.6},
         {title: "The Formula", diff: 3, constant: 12.6},
         {title: "Here We Go", diff: 3, constant: 12.6},
@@ -102,6 +105,7 @@
         {title: "GranFatalité", diff: 3, constant: 12.6},
         {title: "Dragoon", diff: 3, constant: 12.6},
         {title: "Jump!! Jump!! Jump!!", diff: 3, constant: 12.6},
+        {title: "Paradise Lost", diff: 3, constant: 12.5},
         {title: "ファッとして桃源郷", diff: 3, constant: 12.5},
         {title: "かくしん的☆めたまるふぉ～ぜっ!", diff: 3, constant: 12.5},
         {title: "六兆年と一夜物語", diff: 3, constant: 12.5},
@@ -151,6 +155,7 @@
         {title: "いーあるふぁんくらぶ", diff: 3, constant: 11.9},
         {title: "CiRCLING", diff: 3, constant: 11.9},
         {title: "Calamity Fortune", diff: 2, constant: 11.9},
+        {title: "Lost Princess", diff: 3, constant: 11.8},
         {title: "千本桜", diff: 3, constant: 11.8},
         {title: "＊ハロー、プラネット。", diff: 3, constant: 11.8},
         {title: "エンドマークに希望と涙を添えて", diff: 2, constant: 11.8},
@@ -161,6 +166,7 @@
         {title: "7thSense", diff: 2, constant: 11.7},
         {title: "カミサマネジマキ", diff: 2, constant: 11.7},
         {title: "only my railgun", diff: 3, constant: 11.7},
+        {title: "極上スマイル", diff: 3, constant: 11.6},
         {title: "This game", diff: 3, constant: 11.6},
         {title: "Tell Your World", diff: 3, constant: 11.5},
         {title: "GOODRAGE", diff: 2, constant: 11.5},
@@ -216,7 +222,7 @@
 
 
     /* 定数計算関連 */
-    
+
     const RANKSSSplus = 1007500;
     const RANKSSS     = 1000000;
     const RANKSS      =  990000;
@@ -410,7 +416,6 @@
         paramBox = makeParamBox(paramBox, params);
         paramBox.classList.remove("master_score_back");
 
-        
         // ベスト枠平均などのパラメータを「レーティング対象曲(ベスト)」の上に追加
         // 追加する場所の親を取得
         const ref = document.getElementsByClassName('main_wrapper')[0];
