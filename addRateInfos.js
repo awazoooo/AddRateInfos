@@ -232,7 +232,8 @@
     ];
 
 
-    const ONGEKI_PREMIUM_RATE_TARGET_URL = "https://ongeki-net.com/ongeki-mobile/home/ratingTargetMusic/";
+    const ONGEKI_PREMIUM_RATE_TARGET_URL = 'https://ongeki-net.com/ongeki-mobile/home/ratingTargetMusic/';
+    const ONGEKI_MUSICLEVEL_RECORD = 'https://ongeki-net.com/ongeki-mobile/record/musicLevel/';
     const TOOLNAME = 'レート情報追加ツール';
 
 
@@ -263,8 +264,6 @@
     }
 
 
-    /* utilities */
-
     // 難易度に対応する数値を返す
     const diffOfString = function(str) {
         switch (str){
@@ -291,6 +290,9 @@
         }
         return 0.0;
     }
+
+
+    /* JS utils */
 
     // 小数点以下2位までに丸める
     const round2 = function(num){
@@ -440,12 +442,20 @@
         ref.insertBefore(paramBox, underRef);
     }
 
+    // レベル別一覧画面でテクニカルスコア順降順ソート
+    const technicalScoreSort = function() {
+        [].slice.call(document.getElementsByClassName('basic_btn')).map((d) => {var score = d.getElementsByClassName('score_value')[2]; return {dom: d, value: score ? Number(score.textContent.split(',').join('')) : 0}}).sort((a, b) => {return b.value - a.value}).forEach((v) => document.getElementsByClassName('container3')[0].appendChild(v.dom))
+    }
+
     const main = function() {
         const url = location.href;
         if (url == ONGEKI_PREMIUM_RATE_TARGET_URL){
             alert('定数とレート値を計算します');
             console.log('定数とレート値追加中...');
             addConstantAndRate();
+        } else if (url.indexOf(ONGEKI_MUSICLEVEL_RECORD) != -1){
+            console.log('テクニカルスコア順ソート');
+            technicalScoreSort();
         } else {
             alert('「プレイヤーデータ詳細」から「レーティング対象曲」タブを選択して下さい」');
             return;
