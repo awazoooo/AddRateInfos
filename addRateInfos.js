@@ -353,6 +353,7 @@
     const NNEWMUSIC = 15;
 
     // ベスト平均とか到達可能とかを計算
+    // 曲数が足りなくても規定の曲数で割る
     const calcParams = function(d){
         const bestAve = d.bestSum / NBEST;
         const recentAve = d.recentSum / NRECENT;
@@ -387,7 +388,8 @@
     // レーティング対象曲のページに定数とレート値を追加
     const addConstantAndRate = function(){
         // 楽曲Boxを取得
-        const musics = document.getElementsByClassName('basic_btn');
+        // 先頭6つは余分データ.slice(6);
+        const musics = Array.prototype.slice.call(document.getElementsByClassName('wrapper main_wrapper t_c')[0].children).slice(6);
 
         // ベスト平均などを表示するBox
         // 最初の楽曲Boxを雑にコピー
@@ -397,42 +399,70 @@
         // 曲表示の部分を書き換え
         paramBox.getElementsByClassName('music_label')[0].textContent = 'レート情報';
 
-        let acc = { bestSum: 0.0, recentSum: 0.0, newSum: 0.0, topRate: 0.0 };
 
-        // 新曲枠のBoxについての処理
-        // 返り値で新曲枠の集計も
-        for(let i = 0; i < NNEWMUSIC; i += 1){
-            let info = modifyOneMusicHTML(musics[i]);
-            acc.newSum += info.rate;
+        let acc = { bestSum: 0.0, recentSum: 0.0, newSum: 0.0, topRate: null };
+
+        // オンゲキNETの並び順に合わせる
+        let kind_param_list = ['newSum', 'bestSum', 'recentSum'];
+        let param_idx = 0;
+
+        for(let obj of musics){
+            // m_15が 新曲/ベスト/リセント/候補 の区切り
+            if(obj.classList.contains('m_15')){
+                param_idx += 1;
+                continue;
+            }
+
+            // 楽曲データでないときは飛ばす
+            if(!obj.classList.contains('basic_btn'))
+                continue;
+
+            // MEMO: ここまで残ってるobjはmusicBoxだけ
+
+            // 楽曲Boxの処理 + データ集計処理
+            let info = modifyOneMusicHTML(obj);
+            acc[kind_param_list[param_idx]] += info.rate;
+
+            // topRateの取得
+            if(param_idx == 1 && acc.topRate == null && info.diff != 4){
+                acc['topRate'] = info.rate;
+            }
         }
 
-        // ベスト枠のBoxについての処理
-        // ベスト枠の集計も行う
-        let itop = NNEWMUSIC;
-        for(let i = NNEWMUSIC; i < NNEWMUSIC + NBEST; i += 1){
-            let info = modifyOneMusicHTML(musics[i]);
-            // ベスト枠の一番上は曲別最大レート
-            // ただしLunaticは除く
-            if (i == itop && info.diff != 4)
-                acc.topRate = info.rate;
-            else
-                itop += 1;
+        // // 新曲枠のBoxについての処理
+        // // 返り値で新曲枠の集計も
+        // for(let i = 0; i < NNEWMUSIC; i += 1){
+        //     let info = modifyOneMusicHTML(musics[i]);
+        //     acc.newSum += info.rate;
+        // }
 
-            acc.bestSum += info.rate;
-        }
+        // // ベスト枠のBoxについての処理
+        // // ベスト枠の集計も行う
+        // let itop = NNEWMUSIC;
+        // for(let i = NNEWMUSIC; i < NNEWMUSIC + NBEST; i += 1){
+        //     let info = modifyOneMusicHTML(musics[i]);
+        //     // ベスト枠の一番上は曲別最大レート
+        //     // ただしLunaticは除く
+        //     if (i == itop && info.diff != 4)
+        //         acc.topRate = info.rate;
+        //     else
+        //         itop += 1;
 
-        // リセント枠のBoxについての処理
-        // リセント枠の集計も行う
-        for(let i = NNEWMUSIC + NBEST; i < NNEWMUSIC + NBEST + NRECENT; i += 1){
-            let info = modifyOneMusicHTML(musics[i]);
-            acc.recentSum += info.rate;
-        }
+        //     acc.bestSum += info.rate;
+        // }
 
-        // 候補曲のBoxについての処理
-        // 単にレート値と定数を表示するだけ
-        // modifyOneMusicHTMLの返り値は捨てる
-        for(let i = NNEWMUSIC + NBEST + NRECENT; i < musics.length; i += 1)
-            modifyOneMusicHTML(musics[i])
+        // // リセント枠のBoxについての処理
+        // // リセント枠の集計も行う
+        // for(let i = NNEWMUSIC + NBEST; i < NNEWMUSIC + NBEST + NRECENT; i += 1){
+        //     let info = modifyOneMusicHTML(musics[i]);
+        //     acc.recentSum += info.rate;
+        // }
+
+        // // 候補曲のBoxについての処理
+        // // 単にレート値と定数を表示するだけ
+        // // modifyOneMusicHTMLの返り値は捨てる
+        // for(let i = NNEWMUSIC + NBEST + NRECENT; i < musics.length; i += 1)
+        //     modifyOneMusicHTML(musics[i])
 
         // ベスト平均などを計算
         const params = calcParams(acc);
