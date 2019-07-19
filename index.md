@@ -11,14 +11,15 @@
   * 自分が使うために雑に作った
   * スタンダードコースには未対応(できないこともないけどプレミアムコースでしか見れないようになってるしね...)
   * スコアランクAA？以上の曲に対応
-  * 新曲や低難易度(主に11+以下)は定数が判明してないものもあるため，その難易度の最低値の定数として計算します
-    * 例: 11+は11.7，12は12.0
+  * ~~新曲や低難易度(主に11+以下)は定数が判明してないものもあるため，その難易度の最低値の定数として計算します
+    * 例: 11+は11.7，12は12.0~~
 
 ## ブックマークレット
 ```javascript:(function(d,s){s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/constant.js';d.body.appendChild(s);s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/addRateInfos.js';d.body.appendChild(s);})(document);```
 
 
 ## 更新履歴
+  * 19/7/19 7/18とその前の追加曲更新(インド赤とStarring Starsは暫定で12.0)
   * 19/6/20 6/20追加曲更新
   * 19/6/15 新曲枠やベスト枠などが足りない場合の不具合修正
   * 19/6/6  6/6追加曲更新
