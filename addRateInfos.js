@@ -268,7 +268,7 @@
 
 
     const ONGEKI_PREMIUM_RATE_TARGET_URL = 'https://ongeki-net.com/ongeki-mobile/home/ratingTargetMusic/';
-    const ONGEKI_MUSICLEVEL_RECORD = 'https://ongeki-net.com/ongeki-mobile/record/musicLevel/';
+    const ONGEKI_RECORD_URL = 'https://ongeki-net.com/ongeki-mobile/record/';
     const TOOLNAME = 'レート情報追加ツール';
 
 
@@ -458,41 +458,6 @@
             }
         }
 
-        // // 新曲枠のBoxについての処理
-        // // 返り値で新曲枠の集計も
-        // for(let i = 0; i < NNEWMUSIC; i += 1){
-        //     let info = modifyOneMusicHTML(musics[i]);
-        //     acc.newSum += info.rate;
-        // }
-
-        // // ベスト枠のBoxについての処理
-        // // ベスト枠の集計も行う
-        // let itop = NNEWMUSIC;
-        // for(let i = NNEWMUSIC; i < NNEWMUSIC + NBEST; i += 1){
-        //     let info = modifyOneMusicHTML(musics[i]);
-        //     // ベスト枠の一番上は曲別最大レート
-        //     // ただしLunaticは除く
-        //     if (i == itop && info.diff != 4)
-        //         acc.topRate = info.rate;
-        //     else
-        //         itop += 1;
-
-        //     acc.bestSum += info.rate;
-        // }
-
-        // // リセント枠のBoxについての処理
-        // // リセント枠の集計も行う
-        // for(let i = NNEWMUSIC + NBEST; i < NNEWMUSIC + NBEST + NRECENT; i += 1){
-        //     let info = modifyOneMusicHTML(musics[i]);
-        //     acc.recentSum += info.rate;
-        // }
-
-        // // 候補曲のBoxについての処理
-        // // 単にレート値と定数を表示するだけ
-        // // modifyOneMusicHTMLの返り値は捨てる
-        // for(let i = NNEWMUSIC + NBEST + NRECENT; i < musics.length; i += 1)
-        //     modifyOneMusicHTML(musics[i])
-
         // ベスト平均などを計算
         const params = calcParams(acc);
         paramBox = makeParamBox(paramBox, params);
@@ -509,8 +474,15 @@
 
     // レベル別一覧画面でテクニカルスコア順降順ソート
     const technicalScoreSort = function() {
-        [].slice.call(document.getElementsByClassName('basic_btn')).map((d) => {var score = d.getElementsByClassName('score_value')[2]; return {dom: d, value: score ? Number(score.textContent.split(',').join('')) : 0}}).sort((a, b) => {return b.value - a.value}).forEach((v) => document.getElementsByClassName('container3')[0].appendChild(v.dom))
+        [].slice.call(document.getElementsByClassName('basic_btn'))
+                .map((d) => {var score = d.getElementsByClassName('score_value')[2];
+                             return {dom: d, value: score ? Number(score.textContent.split(',').join('')) : 0}})
+                .sort((a, b) => {return b.value - a.value})
+                .forEach((v) => document.getElementsByClassName('container3')[0].appendChild(v.dom))
     }
+
+    // テクニカルスコア降順ソートが有効なURL(ONGEKI_RECORD_URL)以下
+    const ONGEKI_SORTABLE_URLS = ['musicGenre', 'musicWord', 'musicCharacter', 'musicLevel'];
 
     const main = function() {
         const url = location.href;
@@ -518,13 +490,20 @@
             alert('定数とレート値を計算します');
             console.log('定数とレート値追加中...');
             addConstantAndRate();
-        } else if (url.indexOf(ONGEKI_MUSICLEVEL_RECORD) != -1){
-            console.log('テクニカルスコア順ソート');
-            technicalScoreSort();
-        } else {
-            alert('「プレイヤーデータ詳細」から「レーティング対象曲」タブを選択して下さい」');
             return;
         }
+        if (url.indexOf(ONGEKI_RECORD_URL) != -1){
+            // ONGEKI_RECORD_URLがurlの先頭かつ複数含まれることはない
+            const select_type = url.split(ONGEKI_RECORD_URL)[1].split('/')[0];
+            if (ONGEKI_SORTABLE_URLS.includes(select_type)){
+                console.log('テクニカルスコア順ソート');
+                technicalScoreSort();
+                return;
+            }
+        }
+        alert('現在のURLが正しくありません...');
+        alert('レート値計算する場合は，「プレイヤーデータ詳細」から「レーティング対象曲」タブを選択して下さい」');
+        return;
     }
     main();
 })();
