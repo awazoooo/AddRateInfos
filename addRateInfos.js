@@ -384,11 +384,30 @@
     // ベスト平均とか到達可能とかを計算
     // 曲数が足りなくても規定の曲数で割る
     const calcParams = function(d){
-        const bestAve = d.bestSum / NBEST;
-        const recentAve = d.recentSum / NRECENT;
-        const newAve = d.newSum / NNEWMUSIC;
-        const reachable = (d.bestSum + d.topRate * 10 + d.newSum) / (NBEST + NRECENT + NNEWMUSIC);
-        return { bestAve: bestAve, recentAve: recentAve, newAve: newAve, reachable: reachable };
+        const bestSum = d.bests.reduce(
+            (acc, rate) => acc + rate);
+        const recentSum = d.recents.reduce(
+            (acc, rate) => acc + rate);
+        const newSum = d.news.reduce(
+            (acc, rate) => acc + rate);
+        const reachable =
+              (bestSum + d.topRate * 10 + newSum) / (NBEST + NRECENT + NNEWMUSIC);
+
+        // 全曲レート値上位30曲
+        const allBests =
+              d.bests.concat(d.news)
+              .sort( (x, y) => { return y - x; })
+              .slice(0, NBEST);
+        const allBestsSum = allBests.reduce(
+            (acc, rate) => acc + rate);
+        return {
+            bestAve: bestSum / NBEST,
+            recentAve: recentSum / NRECENT,
+            newAve: newSum / NNEWMUSIC,
+            reachable: reachable,
+            allBestAve: allBestsSum / NBEST,
+            allBestMin: allBests[NBEST - 1]
+        };
     }
 
     // ベスト平均などを表示するBox
@@ -401,6 +420,8 @@
         const bestAveBox = makeInfoBox(detailBox.cloneNode(true), "ベスト枠平均", round2(params.bestAve));
         const recentAveBox = makeInfoBox(detailBox.cloneNode(true), "リセント枠平均", round2(params.recentAve));
         const reachableBox = makeInfoBox(detailBox.cloneNode(true), "到達可能レート", round2(params.reachable));
+        const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲ベスト平均", round2(params.allBestAve));
+        const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "全曲ベスト下限", round2(params.allBestMin));
 
         // 元のTECHNICAL HIGHSCOREを消す
         detailBox.remove();
@@ -410,6 +431,8 @@
         box.appendChild(bestAveBox);
         box.appendChild(recentAveBox);
         box.appendChild(reachableBox);
+        box.appendChild(allBestAveBox);
+        box.appendChild(allBestMinBox);
 
         return box;
     }
@@ -429,10 +452,10 @@
         paramBox.getElementsByClassName('music_label')[0].textContent = 'レート情報';
 
 
-        let acc = { bestSum: 0.0, recentSum: 0.0, newSum: 0.0, topRate: null };
+        let acc = { bests: [], recents: [], news: [], topRate: null };
 
         // オンゲキNETの並び順に合わせる
-        let kind_param_list = ['newSum', 'bestSum', 'recentSum'];
+        let kind_param_list = ['news', 'bests', 'recents'];
         let param_idx = 0;
 
         for(let obj of musics){
@@ -450,11 +473,13 @@
 
             // 楽曲Boxの処理 + データ集計処理
             let info = modifyOneMusicHTML(obj);
-            acc[kind_param_list[param_idx]] += info.rate;
+            if(param_idx >= 3)
+                continue;
+            acc[kind_param_list[param_idx]].push(info.rate);
 
             // topRateの取得
             if(param_idx == 1 && acc.topRate == null && info.diff != 4){
-                acc['topRate'] = info.rate;
+                acc.topRate = info.rate;
             }
         }
 
