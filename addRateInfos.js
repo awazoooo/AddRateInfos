@@ -420,8 +420,8 @@
         const bestAveBox = makeInfoBox(detailBox.cloneNode(true), "ベスト枠平均", round2(params.bestAve));
         const recentAveBox = makeInfoBox(detailBox.cloneNode(true), "リセント枠平均", round2(params.recentAve));
         const reachableBox = makeInfoBox(detailBox.cloneNode(true), "到達可能レート", round2(params.reachable));
-        const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲ベスト平均", round2(params.allBestAve));
-        const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "全曲ベスト下限", round2(params.allBestMin));
+        const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲上位30曲平均", round2(params.allBestAve));
+        const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "上位30曲下限", round2(params.allBestMin));
 
         // 元のTECHNICAL HIGHSCOREを消す
         detailBox.remove();
