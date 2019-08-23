@@ -144,7 +144,7 @@
         // {title: "チュルリラ・チュルリラ・ダッダッダ！", diff: 3, constant: 12.7},
         {title: "Dragoon", diff: 3, constant: 12.7},
         {title: "ですのっ！White & Black", diff: 3, constant: 12.7},
-        {title: "ヒバナ", diff: 3, constant: 12.7}
+        {title: "ヒバナ", diff: 3, constant: 12.7},
         {title: "光線チューニング", diff: 3, constant: 12.7},
         {title: "Rule the World!!", diff: 3, constant: 12.7},
         {title: "Hand in Hand", diff: 3, constant: 12.7},
