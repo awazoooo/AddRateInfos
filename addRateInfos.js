@@ -55,7 +55,7 @@
         {title: "初音ミクの消失", diff: 3, constant: 13.7},
         {title: "conflict", diff: 3, constant: 13.7},
         {title: "ギガンティックO.T.N", diff: 3, constant: 13.7},
-        // {title: "サドマミホリック", diff: 3, constant: 13.7},
+        {title: "サドマミホリック", diff: 3, constant: 13.7},
         {title: "Death Doll", diff: 3, constant: 13.7},
         {title: "Sakura Fubuki", diff: 4, constant: 13.7},
         // 13
