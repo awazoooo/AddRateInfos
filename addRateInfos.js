@@ -55,7 +55,7 @@
         {title: "初音ミクの消失", diff: 3, constant: 13.7},
         {title: "conflict", diff: 3, constant: 13.7},
         {title: "ギガンティックO.T.N", diff: 3, constant: 13.7},
-        {title: "サドマミホリック", diff: 3, constant: 13.7},
+        // {title: "サドマミホリック", diff: 3, constant: 13.7},
         {title: "Death Doll", diff: 3, constant: 13.7},
         {title: "Sakura Fubuki", diff: 4, constant: 13.7},
         // 13
@@ -339,18 +339,14 @@
                 return item.title == title && item.diff == idiff
             }
         );
-        // for (let item of constantTable){
-        //     if (item.title == title && item.diff == idiff){
-        //         return item.constant;
-        //     }
-        // }
-        return (musicConstant == void 0 || musicConstant.constant == 0.0) ? defaultConstant : musicConstant.constant;
+        const isDefault = musicConstant == void 0 || musicConstant.constant == 0.0;
+        return { constant: (isDefault ? defaultConstant : musicConstant.constant), isDefault: isDefault };
     }
 
     // 難易度からデフォルト定数(13+だったら13.7)を取得
-    const getDefautlConstant = function(diffStr){
-        const diffPair = diffStr.split('+')
-        const constantStr = diffPair.length == 1 ? diffPair[0] : diffPair + '.7';
+    const getDefaultConstant = function(diffStr){
+        const diffPair = diffStr.split('+');
+        const constantStr = diffPair.length == 1 ? diffPair[0] : diffPair[0] + '.7';
         return parseFloat(constantStr);
     }
 
@@ -372,9 +368,11 @@
     /* HTML操作 */
 
     // boxにstr:valueという情報を追加して返す
-    const makeInfoBox = function(box, str, value) {
+    const makeInfoBox = function(box, str, value, isItalic = false) {
         box.getElementsByClassName('score_label')[0].textContent = str;
         box.getElementsByClassName('f_14')[0].textContent = value;
+        if(isItalic)
+            box.getElementsByClassName('f_14')[0].style.fontStyle = 'italic';
         return box;
     }
 
@@ -385,18 +383,24 @@
         const score = x.getElementsByClassName('f_14')[0].textContent;
         const diff = x.classList.value.split(' ')[1].split('_')[0];
         // musicDiff: 13, 13+などのこと(雑コメ)
-        const musicDiff = x.getElementsByClassName('score_label')[0].textContent;
+        const musicDiff = x.getElementsByClassName('score_level')[0].textContent;
 
         // 定数とレート値を算出
-        const musicConstant = getConstant(musicTitle, diff, getDefautlConstant(musicDiff));
+        const musicConstantInfo = getConstant(musicTitle, diff, getDefaultConstant(musicDiff));
         // スコアにはカンマがついた形(1,000,000)となっているため，除く+数値に変換してcalcRateに渡す
         // 計算した値は丸める
-        const musicRate = round2(calcRate(musicConstant, Number(removeComma(score))));
+        const musicRate = round2(calcRate(musicConstantInfo.constant, Number(removeComma(score))));
 
         // 情報を表示するBoxを作成
         const scoreBox = x.getElementsByClassName('w_260')[0];
-        const constantBox = makeInfoBox(scoreBox.cloneNode(true), "MUSIC CONSTANT", musicConstant);
-        const rateBox = makeInfoBox(scoreBox.cloneNode(true), "MUSIC RATE", musicRate);
+        const constantBox = makeInfoBox(scoreBox.cloneNode(true),
+                                        "MUSIC CONSTANT",
+                                        musicConstantInfo.constant,
+                                        musicConstantInfo.isDefault);
+        const rateBox = makeInfoBox(scoreBox.cloneNode(true),
+                                    "MUSIC RATE",
+                                    musicRate,
+                                    musicConstantInfo.isDefault);
 
         // HTMLにBoxを追加
         x.appendChild(constantBox);
