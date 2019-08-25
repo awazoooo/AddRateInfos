@@ -11,6 +11,7 @@
     */
 
   // 3/2作成
+  // 8/22 オンゲキSUMMERアプデで大幅に変更中
   const constantTable = [
     // 14+
     {title: 'Opfer', diff: 3, constant: 14.9},
@@ -338,7 +339,7 @@
     }
   };
 
-  // 定数表から定数を取ってくる
+  // 定数表から定数を取得
   const getConstant = function(title, diff, defaultConstant) {
     const idiff = diffOfString(diff);
     const musicConstant = constantTable.find(
@@ -446,12 +447,20 @@
         (acc, rate) => acc + rate);
     return {
       bestAve: bestSum / NBEST,
+      nBest: d.bests.length,
       recentAve: recentSum / NRECENT,
+      nRecent: d.recents.length,
       newAve: newSum / NNEWMUSIC,
+      nNew: d.news.length,
       reachable: reachable,
       allBestAve: allBestsSum / NBEST,
       allBestMin: allBests[NBEST - 1],
     };
+  };
+
+  // パラメータの表示名
+  const makeDisplayName = function(attr, nFilled, nMax) {
+    return attr + ' ('+ nFilled + '/' + nMax + ')';
   };
 
   // ベスト平均などを表示するBox
@@ -460,9 +469,9 @@
     const detailBox = box.getElementsByClassName('w_260')[0];
 
     // 適当なboxをコピーして使用
-    const newAveBox = makeInfoBox(detailBox.cloneNode(true), '新曲枠平均', round2(params.newAve));
-    const bestAveBox = makeInfoBox(detailBox.cloneNode(true), 'ベスト枠平均', round2(params.bestAve));
-    const recentAveBox = makeInfoBox(detailBox.cloneNode(true), 'リセント枠平均', round2(params.recentAve));
+    const newAveBox = makeInfoBox(detailBox.cloneNode(true), makeDisplayName('新曲枠平均', params.nNew, NNEWMUSIC), round2(params.newAve));
+    const bestAveBox = makeInfoBox(detailBox.cloneNode(true), makeDisplayName('ベスト枠平均', params.nBest, NBEST), round2(params.bestAve));
+    const recentAveBox = makeInfoBox(detailBox.cloneNode(true), makeDisplayName('リセント枠平均', params.nRecent, NRECENT), round2(params.recentAve));
     const reachableBox = makeInfoBox(detailBox.cloneNode(true), '到達可能レート', round2(params.reachable));
     //        const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲上位30曲平均", round2(params.allBestAve));
     //        const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "上位30曲下限", round2(params.allBestMin));
@@ -515,7 +524,6 @@
       }
 
       // MEMO: ここまで残ってるobjはmusicBoxだけ
-
       // 楽曲Boxの処理 + データ集計処理
       const info = modifyOneMusicHTML(obj);
       if (paramIdx >= 3) {
