@@ -1,0 +1,26 @@
+{
+  "name": "addrateinfos",
+  "version": "1.0.0",
+  "description": "オンゲキNETのレーティング対象曲のページに定数とレート値などを追加",
+  "main": "addRateInfos.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awazoooo/AddRateInfos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/awazoooo/AddRateInfos/issues"
+  },
+  "homepage": "https://github.com/awazoooo/AddRateInfos#readme",
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-google": "^0.13.0"
+  }
+}
