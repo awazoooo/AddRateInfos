@@ -165,6 +165,7 @@
     {title: '進捗どうですか？', diff: 3, constant: 12.6},
     {title: 'チルノのパーフェクトさんすう教室', diff: 3, constant: 12.6},
     {title: '徒花ネクロマンシー', diff: 3, constant: 12.6},
+    {title: '人類みなセンパイ！', diff: 3, constant: 12.6},
     {title: 'Mare Maris', diff: 3, constant: 12.5},
     {title: '六兆年と一夜物語', diff: 3, constant: 12.5},
     {title: 'キミノヨゾラ哨戒班', diff: 3, constant: 12.5},
@@ -190,6 +191,8 @@
     {title: 'Preserved Roses', diff: 3, constant: 12.4},
     {title: 'Star Divine', diff: 3, constant: 12.4},
     {title: '永遠メモリー', diff: 3, constant: 12.4},
+    {title: '透明声彩', diff: 3, constant: 12.4},
+    {title: 'Connecting Happy!!', diff: 3, constant: 12.4},
     {title: 'Dazzle hop', diff: 2, constant: 12.3},
     {title: 'YURUSHITE', diff: 2, constant: 12.3},
     {title: 'Desperado Waltz', diff: 2, constant: 12.3},
@@ -232,9 +235,7 @@
     {title: 'CiRCLING', diff: 3, constant: 12.0},
     {title: '＊ハロー、プラネット。', diff: 3, constant: 12.0},
     {title: 'サマータイムレコード', diff: 3, constant: 12.0},
-    {title: 'Connecting Happy!!', diff: 3, constant: 0},
-    {title: '人類みなセンパイ！', diff: 3, constant: 0},
-    {title: '透明声彩', diff: 3, constant: 0},
+
     // 11+
 
     // {title: "ＧＯ！ＧＯ！ラブリズム♥", diff: 3, constant: 12.3},
