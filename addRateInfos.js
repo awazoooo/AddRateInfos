@@ -23,6 +23,7 @@
     // 14
     {title: 'MEGATON BLAST', diff: 3, constant: 14.6},
     {title: '怒槌', diff: 3, constant: 14.5},
+    {title: 'GEOMETRIC DANCE', diff: 3, constant: 14.5},
     {title: '混沌を越えし我らが神聖なる調律主を讃えよ', diff: 3, constant: 14.4},
     {title: '心', diff: 3, constant: 14.4},
     {title: '神威', diff: 3, constant: 14.3},
@@ -58,6 +59,7 @@
     {title: 'サドマミホリック', diff: 3, constant: 13.7},
     {title: 'Death Doll', diff: 3, constant: 13.7},
     {title: 'Sakura Fubuki', diff: 4, constant: 13.7},
+    {title: 'インビジブル', diff: 3, constant: 13.7},
     // 13
     {title: 'アリサのテーマ', diff: 3, constant: 13.6},
     {title: 'Halcyon', diff: 3, constant: 13.6},
@@ -123,6 +125,7 @@
     {title: 'TeA', diff: 3, constant: 12.9},
     {title: '本能的 Survivor', diff: 3, constant: 12.9},
     {title: 'fulgente', diff: 3, constant: 12.9},
+    {title: 'MAKING！ハイタッチ！', diff: 3, constant: 12.9},
     {title: 'からくりピエロ', diff: 4, constant: 12.9},
     {title: 'からくりピエロ', diff: 3, constant: 12.8},
     {title: 'Link with U', diff: 3, constant: 12.8},
@@ -225,6 +228,7 @@
     {title: 'Colors', diff: 3, constant: 12.1},
     {title: 'only my railgun', diff: 3, constant: 12.1},
     {title: '夜明けのストリング', diff: 3, constant: 12.1},
+    {title: 'GEOMETRIC DANCE', diff: 2, constant: 12.1},
     {title: '神威', diff: 2, constant: 12.0},
     {title: 'Zest of Blue', diff: 3, constant: 12.0},
     {title: 'おこちゃま戦争', diff: 3, constant: 12.0},
