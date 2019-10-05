@@ -51,6 +51,7 @@
     {title: 'Calamity Fortune', diff: 3, constant: 13.8},
     {title: 'クイーンオブハート', diff: 3, constant: 13.8},
     {title: 'Lazy Addiction', diff: 3, constant: 13.8},
+    {title: 'Imperishable Night 2006 (2016 Refine)', diff: 3, constant: 13.8},
     {title: 'ぼくらの16bit戦争', diff: 3, constant: 13.7},
     {title: 'AMAZING MIGHTYYYY!!!!', diff: 3, constant: 13.7},
     {title: '初音ミクの消失', diff: 3, constant: 13.7},
@@ -84,6 +85,7 @@
     {title: 'ω4', diff: 2, constant: 13.4},
     {title: 'Opfer', diff: 2, constant: 13.4},
     {title: '全力ハッピーライフ', diff: 3, constant: 13.4},
+    {title: 'Petit Etoile', diff: 3, constant: 13.4},
     {title: '患部で止まってすぐ溶ける～狂気の優曇華院', diff: 3, constant: 13.3},
     {title: 'BOUNCE & DANCE', diff: 3, constant: 13.3},
     {title: 'TAKE ON THE WORLD', diff: 3, constant: 13.3},
@@ -114,6 +116,7 @@
     {title: '時の冒険者', diff: 3, constant: 13.0},
     {title: 'sweet little sister', diff: 3, constant: 13.0},
     {title: 'Opera of the wasteland', diff: 3, constant: 13.0},
+    {title: '青春サイダー', diff: 3, constant: 13},
     // 12+
     {title: '鬼KYOKAN', diff: 3, constant: 12.9},
     {title: '幻想のサテライト', diff: 3, constant: 12.9},
