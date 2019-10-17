@@ -64,3 +64,9 @@ var unregisteredMusicInfo = function(constants){
     const diff = location.href.split("diff=")[1];
     return musicInfo.map(e => makeMusicInfo(e.title, diff, e.level)).join('');
 }
+
+// ベスト枠の最大値を計算
+// MEMO: addRateInfosのmain関数を実行後に直接ブラウザコンソールで利用
+var currentMaxBest = function(){
+    return [].slice.call(document.getElementsByClassName('basic_btn')).slice(16,46).map(x => parseFloat(x.getElementsByClassName('f_14 l_h_12')[1].textContent) + 2).reduce((pre, cur) => pre + cur)
+}
