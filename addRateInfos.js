@@ -362,7 +362,6 @@
   ];
 
   const constantTable = newMusicTable.concat(musicTable);
-
   const ONGEKI_PREMIUM_RATE_TARGET_URL =
     "https://ongeki-net.com/ongeki-mobile/home/ratingTargetMusic/";
   const ONGEKI_RECORD_URL = "https://ongeki-net.com/ongeki-mobile/record/";
@@ -521,67 +520,69 @@
   const NBEST = 30;
   const NRECENT = 10;
   const NNEWMUSIC = 15;
+  const NALL = NBEST + NRECENT + NNEWMUSIC;
 
   // ベスト平均とか到達可能とかを計算
   // 曲数が足りなくても規定の曲数で割る
-  const calcParams = (d) => {
-    const bestSum = d.bests.reduce((acc, rate) => acc + rate);
-    const recentSum = d.recents.reduce((acc, rate) => acc + rate);
-    const newSum = d.news.reduce((acc, rate) => acc + rate);
-    const reachable =
-      (bestSum + d.topRate * 10 + newSum) / (NBEST + NRECENT + NNEWMUSIC);
+  const calcParams = d => {
+    const add = (x, y) => x + y;
+    const bestSum = d.bests.reduce(add);
+    const recentSum = d.recents.reduce(add);
+    const newSum = d.news.reduce(add);
+    const reachableSum = bestSum + d.topRate * 10 + newSum;
 
     // 全曲レート値上位30曲
     const allBests = d.bests
       .concat(d.news)
-      .sort((x, y) => {
-        return y - x;
-      })
+      .sort((x, y) => y - x)
       .slice(0, NBEST);
-    const allBestsSum = allBests.reduce((acc, rate) => acc + rate);
+    const allBestsSum = allBests.reduce(add);
     return {
-      bestAve: bestSum / NBEST,
+      bestSum: bestSum,
       nBest: d.bests.length,
-      recentAve: recentSum / NRECENT,
+      recentSum: recentSum,
       nRecent: d.recents.length,
-      newAve: newSum / NNEWMUSIC,
+      newSum: newSum,
       nNew: d.news.length,
-      reachable: reachable,
-      allBestAve: allBestsSum / NBEST,
+      reachableSum: reachableSum,
+      // 新旧全部合わせたベスト30曲の平均・下限
+      allBestAve: allBestsSum,
       allBestMin: allBests[NBEST - 1]
     };
   };
 
-  // パラメータの表示名
-  const makeDisplayName = function(attr, nFilled, nMax) {
-    return attr + " (" + nFilled + "/" + nMax + ")";
-  };
-
   // ベスト平均などを表示するBox
-  const makeParamBox = function(box, params) {
+  const makeParamBox = (box, params) => {
     // 各パラメータを表示するBox
     const detailBox = box.getElementsByClassName("w_260")[0];
+    // font size
+    detailBox
+      .getElementsByClassName("score_value")[0]
+      .getElementsByClassName("f_14")[0].style.fontSize = "13px";
 
     // 適当なboxをコピーして使用
     const newAveBox = makeInfoBox(
       detailBox.cloneNode(true),
-      makeDisplayName("新曲枠平均", params.nNew, NNEWMUSIC),
-      round2(params.newAve)
+      `新曲枠平均 (${params.nNew}/${NNEWMUSIC})`,
+      round2(params.newSum / NNEWMUSIC) + "(" + round2(params.newSum) + ")"
     );
     const bestAveBox = makeInfoBox(
       detailBox.cloneNode(true),
-      makeDisplayName("ベスト枠平均", params.nBest, NBEST),
-      round2(params.bestAve)
+      `ベスト枠平均 (${params.nBest}/${NBEST})`,
+      round2(params.bestSum / NBEST) + "(" + round2(params.bestSum) + ")"
     );
     const recentAveBox = makeInfoBox(
       detailBox.cloneNode(true),
-      makeDisplayName("リセント枠平均", params.nRecent, NRECENT),
-      round2(params.recentAve)
+      `リセント枠平均 (${params.nRecent}/${NRECENT})`,
+      round2(params.recentSum / NRECENT) + "(" + round2(params.recentSum) + ")"
     );
     const reachableBox = makeInfoBox(
       detailBox.cloneNode(true),
       "到達可能レート",
-      round2(params.reachable)
+      round2(params.reachableSum / NALL) +
+        "(" +
+        round2(params.reachableSum) +
+        ")"
     );
     //        const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲上位30曲平均", round2(params.allBestAve));
     //        const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "上位30曲下限", round2(params.allBestMin));
@@ -601,7 +602,7 @@
   };
 
   // レーティング対象曲のページに定数とレート値を追加
-  const addConstantAndRate = function() {
+  const addConstantAndRate = () => {
     // 楽曲Boxを取得
     // 先頭6つは余分データ.slice(6);
     const musics = Array.prototype.slice
@@ -666,7 +667,7 @@
   };
 
   // レベル別一覧画面でテクニカルスコア順降順ソート
-  const technicalScoreSort = function() {
+  const technicalScoreSort = () => {
     [].slice
       .call(document.getElementsByClassName("basic_btn"))
       .map(d => {
@@ -676,9 +677,7 @@
           value: score ? Number(score.textContent.split(",").join("")) : 0
         };
       })
-      .sort((a, b) => {
-        return b.value - a.value;
-      })
+      .sort((a, b) => b.value - a.value)
       .forEach(v =>
         document.getElementsByClassName("container3")[0].appendChild(v.dom)
       );
@@ -692,7 +691,7 @@
     "musicLevel"
   ];
 
-  const main = function() {
+  const main = () => {
     const url = location.href;
     if (url == ONGEKI_PREMIUM_RATE_TARGET_URL) {
       alert("定数とレート値を計算します");
