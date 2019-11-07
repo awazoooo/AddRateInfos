@@ -14,6 +14,7 @@
   // 8/22 オンゲキSUMMERアプデで大幅に変更中
   // 新曲枠曲
   const newMusicTable = [
+    { title: "A Man In The Mirror", diff: 3, constant: 14.8 },
     { title: "緋蜂", diff: 4, constant: 14.7 },
     { title: "GEOMETRIC DANCE", diff: 3, constant: 14.5 },
     { title: "World Vanquisher", diff: 3, constant: 14.5 },
@@ -40,10 +41,13 @@
     },
     { title: "ウサテイ", diff: 3, constant: 13.2 },
     { title: "銀のめぐり", diff: 3, constant: 13.2 },
+    { title: "A Man In The Mirror", diff: 2, constant: 13.2 },
     { title: "ADAMAS", diff: 3, constant: 13.1 },
     { title: "青春サイダー", diff: 3, constant: 13 },
+    { title: "デリヘル呼んだら君が来た", diff: 3, constant: 13 },
     { title: "MAKING！ハイタッチ！", diff: 3, constant: 12.9 },
     { title: "からくりピエロ", diff: 4, constant: 12.9 },
+    { title: "感情アクセラレイション", diff: 3, constant: 12.8 },
     { title: "Help me, ERINNNNNN!!", diff: 3, constant: 12.8 },
     { title: "まっすぐ→→→ストリーム！", diff: 3, constant: 12.8 },
     { title: "Doll's Destiny", diff: 3, constant: 12.8 },
@@ -54,6 +58,7 @@
     { title: "ポケットからぬりつぶせ！", diff: 3, constant: 12.6 },
     { title: "人類みなセンパイ！", diff: 3, constant: 12.6 },
     { title: "徒花ネクロマンシー", diff: 3, constant: 12.6 },
+    { title: "星屑☆シーカー", diff: 3, constant: 12.6 },
     { title: "彗星ハネムーン", diff: 3, constant: 12.5 },
     { title: "未来の彼方", diff: 3, constant: 12.5 },
     { title: "METEOR", diff: 3, constant: 12.5 },
@@ -64,6 +69,7 @@
     { title: "最強 the サマータイム!!!!!", diff: 3, constant: 12.4 },
     { title: "快晴", diff: 3, constant: 12.3 },
     { title: "トリドリ⇒モリモリ！Lovely fruits☆", diff: 3, constant: 12.3 },
+    { title: "スタートライン", diff: 3, constant: 12.3 },
     { title: "レプリカの恋", diff: 3, constant: 12.2 },
     { title: "夜明けのストリング", diff: 3, constant: 12.1 },
     { title: "GEOMETRIC DANCE", diff: 2, constant: 12.1 },
