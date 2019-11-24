@@ -466,7 +466,21 @@
   /* JS utils */
 
   // 小数点以下2位までに丸める
-  const round2 = n => Math.floor(n * Math.pow(10, 2)) / Math.pow(10, 2);
+  // 以下の方法だと round2(16.4) -> 16.39 になってしまうため，文字列でうまいことする
+  // const round2 = n => Math.floor(n * Math.pow(10, 2)) / Math.pow(10, 2);
+  const round2 = n => {
+    const numStrs = (n + '').split('.');
+    // 整数
+    if (numStrs.length === 1)
+      return n;
+
+    // 少数
+    if (numStrs[1].length < 3) {
+      return n;
+    } else {
+      return Number(numStrs[0] + '.' + numStrs[1].slice(0, 2))
+    }
+  }
 
   // 文字列からカンマを除く
   // removeComma("1,000,000") -> "1000000")
@@ -498,11 +512,14 @@
       diff,
       getDefaultConstant(musicDiff)
     );
+    console.log(musicConstantInfo);
     // スコアにはカンマがついた形(1,000,000)となっているため，除く+数値に変換してcalcRateに渡す
     // 計算した値は丸める
     const musicRate = round2(
       calcRate(musicConstantInfo.constant, Number(removeComma(score)))
     );
+    console.log(calcRate(musicConstantInfo.constant, Number(removeComma(score))));
+    console.log(musicRate);
 
     // 情報を表示するBoxを作成
     const scoreBox = x.getElementsByClassName("w_260")[0];
