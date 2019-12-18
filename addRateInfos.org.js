@@ -518,14 +518,12 @@
       diff,
       getDefaultConstant(musicDiff)
     );
-    console.log(musicConstantInfo);
     // スコアにはカンマがついた形(1,000,000)となっているため，除く+数値に変換してcalcRateに渡す
     // 計算した値は丸める
     const musicRate = round2(
       calcRate(musicConstantInfo.constant, Number(removeComma(score)))
     );
-    console.log(calcRate(musicConstantInfo.constant, Number(removeComma(score))));
-    console.log(musicRate);
+
 
     // 情報を表示するBoxを作成
     const scoreBox = x.getElementsByClassName("w_260")[0];
