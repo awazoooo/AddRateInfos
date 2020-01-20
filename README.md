@@ -4,16 +4,15 @@
 <br>
 
 ## 👍  各種レート計算/表示機能
-#### 新曲/ベスト/リセント枠平均や，到達可能レートを自動で計算/表示
+新曲/ベスト/リセント枠平均や，到達可能レートを自動で計算/表示
 <img width="237" alt="スクリーンショット 2020-01-20 23 58 48" src="https://user-images.githubusercontent.com/33801530/72736354-dde97880-3be0-11ea-89ce-6442bfda28ae.png">
-<br>
 
-#### 単曲レート値の計算/表示
+単曲レート値の計算/表示
 <img width="430" alt="スクリーンショット 2020-01-20 23 39 12" src="https://user-images.githubusercontent.com/33801530/72735120-89dd9480-3bde-11ea-8bda-0a89b703e511.png">
 <br>
 
 ## 👊  楽曲テクニカルスコア順並び替え
-* 楽曲のテクニカルスコアが高い順にソート
+楽曲のテクニカルスコアが高い順にソート
 <img width="436" alt="スクリーンショット 2020-01-20 23 49 15" src="https://user-images.githubusercontent.com/33801530/72735608-7e3e9d80-3bdf-11ea-82a0-0bc779dacb3a.png">
 <br>
 
