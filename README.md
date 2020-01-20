@@ -1,29 +1,31 @@
 # オンゲキレート計算ツール
-<img width="433" alt="スクリーンショット 2020-01-20 23 38 17" src="https://user-images.githubusercontent.com/33801530/72734943-32d7bf80-3bde-11ea-8cbc-3d34103db76b.png">
-オンゲキNETのレーティング対象曲のページに定数とレート値などを追加
+### オンゲキNETのレーティング対象曲のページに定数とレート値などを追加
+<img width="412" alt="スクリーンショット 2020-01-20 23 57 56" src="https://user-images.githubusercontent.com/33801530/72736315-d32ee380-3be0-11ea-820a-139b271de28a.png">
 
-## 👍  機能
-### 各種レート計算/表示
-<img width="433" alt="スクリーンショット 2020-01-20 23 38 17" src="https://user-images.githubusercontent.com/33801530/72734943-32d7bf80-3bde-11ea-8cbc-3d34103db76b.png">
+
+## 👍  各種レート計算/表示機能
+### 新曲/ベスト/リセント枠平均や，到達可能レートを自動で計算/表示
+<img width="237" alt="スクリーンショット 2020-01-20 23 58 48" src="https://user-images.githubusercontent.com/33801530/72736354-dde97880-3be0-11ea-89ce-6442bfda28ae.png">
+
+### 単曲レート値の計算/表示
+
 <img width="430" alt="スクリーンショット 2020-01-20 23 39 12" src="https://user-images.githubusercontent.com/33801530/72735120-89dd9480-3bde-11ea-8bda-0a89b703e511.png">
   
-### 楽曲テクニカルスコア順並び替え
+## 👊  楽曲テクニカルスコア順並び替え
+### 楽曲のテクニカルスコアが高い順にソート
 <img width="436" alt="スクリーンショット 2020-01-20 23 49 15" src="https://user-images.githubusercontent.com/33801530/72735608-7e3e9d80-3bdf-11ea-82a0-0bc779dacb3a.png">
-
-* 楽曲スコアが高い順に並べることができます
-  * 筐体のスコアと同じ順に並べることも
   
 ## 💬  使い方
-### 各種レート計算/表示機能
+## 各種レート計算/表示機能
 0. プレミアムコースに登録
 1. オンゲキNETにログインして，「プレイヤーデータ詳細」を選択
 2. タブから「レーティング対象曲」を選択
 3. ブックマークレットを起動
   
-#### 🔖  ブックマークレット
+## 🔖  ブックマークレット
 ```javascript:(function(d,s){s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/constant.js';d.body.appendChild(s);s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/addRateInfos.js';d.body.appendChild(s);})(document);```
   
-### 楽曲テクニカルスコア順並び替え
+## 楽曲テクニカルスコア順並び替え
 0. 「オンゲキNETトップページ」-> 「レコード」 -> 「楽曲別レコード」 -> 「カテゴリ別」を選択
 1. 好きな絞り込み方法(ジャンル，あいうえお，キャラクター，LEVEL)を選択
 2. 難易度を選択
@@ -37,7 +39,7 @@
   * スコアランクAA以上の曲に対応
   * 定数未判明の曲はその難易度の最低値で計算(12なら12.0, 13+なら13.7など)
 
-## 更新履歴
+### 更新履歴
   * 20/1/16  12/17~1/16追加曲更新
   * 19/12/18 11/21~12/17追加曲更新
   * 19/11/14 11/14追加曲更新
