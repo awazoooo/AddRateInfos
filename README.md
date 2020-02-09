@@ -25,10 +25,10 @@
 1. オンゲキNETにログインして，「プレイヤーデータ詳細」を選択
 2. タブから「レーティング対象曲」を選択
 3. ブックマークレットを起動
-  
+
 ## 🔖  ブックマークレット
 ```javascript:(function(d,s){s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/constant.js';d.body.appendChild(s);s=d.createElement('script');s.src='https://awazoooo.github.io/AddRateInfos/addRateInfos.js';d.body.appendChild(s);})(document);```
-  
+
 ## 楽曲テクニカルスコア順並び替え
 0. 「オンゲキNETトップページ」-> 「レコード」 -> 「楽曲別レコード」 -> 「カテゴリ別」を選択
 1. 好きな絞り込み方法(ジャンル，あいうえお，キャラクター，LEVEL)を選択
@@ -44,6 +44,7 @@
   * 定数未判明の曲はその難易度の最低値で計算(12なら12.0, 13+なら13.7など)
 
 ### 更新履歴
+  * 20/2/9   定数更新
   * 20/1/16  12/17~1/16追加曲更新
   * 19/12/18 11/21~12/17追加曲更新
   * 19/11/14 11/14追加曲更新
