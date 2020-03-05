@@ -9,11 +9,14 @@ export const newMusicTable = [
   { title: "どどんぱち大音頭", diff: 4, constant: 13.9 },
   { title: "Last Kingdom", diff: 3, constant: 13.9 },
   { title: "疾走あんさんぶる", diff: 3, constant: 13.8 },
+  { title: "Dreadnought", diff: 3, constant: 13.8 },
+
 
   // 13
   { title: "Sparkle", diff: 3, constant: 13.6 },
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
   { title: "Splash Dance!!", diff: 3, constant: 13.1 },
+  { title: "Seyana. ～何でも言うことを聞いてくれるアカネチャン～", diff: 3, constant: 13.1 },
 
   // 12+
   { title: "Vibes 2k20", diff: 2, constant: 12.9 },
@@ -28,7 +31,13 @@ export const newMusicTable = [
   { title: "R'N'R Monsta", diff: 2, constant: 12.5 },
   { title: "春擬き", diff: 3, constant: 12.4 },
   { title: "乙女解剖", diff: 3, constant: 12 },
-  { title: "Last Kingdom", diff: 2, constant: 12 }
+  { title: "Last Kingdom", diff: 2, constant: 12 },
+  { title: "エブリデイワールド", diff: 3, constant: 12 },
+
+  // 11+
+  { title: "Dreadnought", diff: 2, constant: 11.9 },
+  { title: "SmileAgain", diff: 3, constant: 11.7 }
+
 ];
 
 // ベスト枠
