@@ -4,6 +4,7 @@ export const newMusicTable = [
   // 14
   { title: "R'N'R Monsta", diff: 3, constant: 14.1 },
   { title: "Vibes 2k20", diff: 3, constant: 14 },
+  { title: "Ai Drew", diff: 3, constant: 14 },
 
   // 13+
   { title: "どどんぱち大音頭", diff: 4, constant: 13.9 },
@@ -11,9 +12,9 @@ export const newMusicTable = [
   { title: "疾走あんさんぶる", diff: 3, constant: 13.8 },
   { title: "Dreadnought", diff: 3, constant: 13.8 },
 
-
   // 13
   { title: "Sparkle", diff: 3, constant: 13.6 },
+  { title: "撩乱乙女†無双劇", diff: 3, constant: 13.3 },
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
   { title: "Splash Dance!!", diff: 3, constant: 13.1 },
   { title: "Seyana. ～何でも言うことを聞いてくれるアカネチャン～", diff: 3, constant: 13.1 },
@@ -23,13 +24,18 @@ export const newMusicTable = [
   { title: "お願いマッスル", diff: 3, constant: 12.9 },
   { title: "ピースサイン", diff: 3, constant: 12.8 },
   { title: "Catch the Moment", diff: 3, constant: 12.8 },
+  { title: "アンドロイドガール", diff: 3, constant: 12.8 },
+  { title: "INDETERMINATE UNIVERSE", diff: 3, constant: 12.7 },
 
   // 12
   { title: "ヒャダインのカカカタ☆カタオモイ-C", diff: 3, constant: 12.6 },
+  { title: "チェチェ・チェック・ワンツー！", diff: 3, constant: 12.6 },
   { title: "わたしたち魔法乙女です☆", diff: 3, constant: 12.6 },
   { title: "メルティランドナイトメア", diff: 3, constant: 12.5 },
   { title: "R'N'R Monsta", diff: 2, constant: 12.5 },
+  { title: "Ai Drew", diff: 2, constant: 14 },
   { title: "春擬き", diff: 3, constant: 12.4 },
+  { title: "ホシノキズナ", diff: 3, constant: 12.4 },
   { title: "乙女解剖", diff: 3, constant: 12 },
   { title: "Last Kingdom", diff: 2, constant: 12 },
   { title: "エブリデイワールド", diff: 3, constant: 12 },
