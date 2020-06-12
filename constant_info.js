@@ -1,6 +1,9 @@
 // 2/24 SUMMER PLUSに対応
 // 新曲枠曲
-export const newMusicTable = [
+const newMusicTable = [
+  // 14+
+  { title: 'otorii INNOVATED -[i]3-', diff: 3, constant: 14.7 },
+
   // 14
   { title: "R'N'R Monsta", diff: 3, constant: 14.1 },
   { title: "Vibes 2k20", diff: 3, constant: 14 },
@@ -11,9 +14,12 @@ export const newMusicTable = [
   { title: "Last Kingdom", diff: 3, constant: 13.9 },
   { title: "疾走あんさんぶる", diff: 3, constant: 13.8 },
   { title: "Dreadnought", diff: 3, constant: 13.8 },
+  { title: 'アマツカミ', diff: 3, constant: 13.8 },
+
 
   // 13
   { title: "Sparkle", diff: 3, constant: 13.6 },
+  { title: 'DAWNBREAKER', diff: 3, constant: 13.6 },
   { title: "撩乱乙女†無双劇", diff: 3, constant: 13.3 },
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
   { title: "Splash Dance!!", diff: 3, constant: 13.1 },
@@ -25,7 +31,9 @@ export const newMusicTable = [
   { title: "ピースサイン", diff: 3, constant: 12.8 },
   { title: "Catch the Moment", diff: 3, constant: 12.8 },
   { title: "アンドロイドガール", diff: 3, constant: 12.8 },
+  { title: 'ぱくぱく☆がーる', diff: 3, constant: 12.8 },
   { title: "INDETERMINATE UNIVERSE", diff: 3, constant: 12.7 },
+  { title: 'otorii INNOVATED -[i]3-', diff: 2, constant: 12.7 },
 
   // 12
   { title: "ヒャダインのカカカタ☆カタオモイ-C", diff: 3, constant: 12.6 },
@@ -47,7 +55,7 @@ export const newMusicTable = [
 ];
 
 // ベスト枠
-export const musicTable = [
+const musicTable = [
   // 14+
   { title: "Opfer", diff: 3, constant: 14.9 },
   { title: "Titania", diff: 3, constant: 14.9 },
@@ -214,3 +222,7 @@ export const musicTable = [
   { title: "本能的 Survivor", diff: 3, constant: 13 },
   { title: "ロッキンピンクモンスター", diff: 3, constant: 13 }
 ];
+
+const constantTable = newMusicTable.concat(musicTable);
+
+export { newMusicTable, musicTable };
