@@ -1,10 +1,11 @@
-// 2/24 SUMMER PLUSに対応
+// 2/24 SUMMER PLUSに対
 // 新曲枠曲
 const newMusicTable = [
   // 14+
   { title: 'otorii INNOVATED -[i]3-', diff: 3, constant: 14.7 },
 
   // 14
+  { title: 'Galaxy Blaster', diff: 3, constant: 14.3 },
   { title: "R'N'R Monsta", diff: 3, constant: 14.1 },
   { title: "Vibes 2k20", diff: 3, constant: 14 },
   { title: "Ai Drew", diff: 3, constant: 14 },
@@ -12,10 +13,10 @@ const newMusicTable = [
   // 13+
   { title: "どどんぱち大音頭", diff: 4, constant: 13.9 },
   { title: "Last Kingdom", diff: 3, constant: 13.9 },
+  { title: 'Trinity Departure', diff: 3, constant: 13.9 },
   { title: "疾走あんさんぶる", diff: 3, constant: 13.8 },
   { title: "Dreadnought", diff: 3, constant: 13.8 },
   { title: 'アマツカミ', diff: 3, constant: 13.8 },
-
 
   // 13
   { title: "Sparkle", diff: 3, constant: 13.6 },
@@ -36,6 +37,7 @@ const newMusicTable = [
   { title: 'otorii INNOVATED -[i]3-', diff: 2, constant: 12.7 },
 
   // 12
+  { title: 'Galaxy Blaster', diff: 2, constant: 12.6 },
   { title: "ヒャダインのカカカタ☆カタオモイ-C", diff: 3, constant: 12.6 },
   { title: "チェチェ・チェック・ワンツー！", diff: 3, constant: 12.6 },
   { title: "わたしたち魔法乙女です☆", diff: 3, constant: 12.6 },
@@ -44,6 +46,8 @@ const newMusicTable = [
   { title: "Ai Drew", diff: 2, constant: 14 },
   { title: "春擬き", diff: 3, constant: 12.4 },
   { title: "ホシノキズナ", diff: 3, constant: 12.4 },
+  { title: '進め！マイウェイ！', diff: 3, constant: 12.3 },
+  { title: 'Trinity Departure', diff: 2, constant: 12.3 },
   { title: "乙女解剖", diff: 3, constant: 12 },
   { title: "Last Kingdom", diff: 2, constant: 12 },
   { title: "エブリデイワールド", diff: 3, constant: 12 },
