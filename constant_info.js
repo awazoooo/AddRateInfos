@@ -23,6 +23,7 @@ const newMusicTable = [
   { title: 'DAWNBREAKER', diff: 3, constant: 13.6 },
   { title: "撩乱乙女†無双劇", diff: 3, constant: 13.3 },
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
+  { title: 'Stage of Star', diff: 3, constant: 13.2 },
   { title: "Splash Dance!!", diff: 3, constant: 13.1 },
   { title: "Seyana. ～何でも言うことを聞いてくれるアカネチャン～", diff: 3, constant: 13.1 },
 
@@ -35,12 +36,15 @@ const newMusicTable = [
   { title: 'ぱくぱく☆がーる', diff: 3, constant: 12.8 },
   { title: "INDETERMINATE UNIVERSE", diff: 3, constant: 12.7 },
   { title: 'otorii INNOVATED -[i]3-', diff: 2, constant: 12.7 },
+  { title: 'Purple Rays', diff: 3, constant: 12.7 },
 
   // 12
+  { title: 'Catch the Wave', diff: 3, constant: 12.6 },
   { title: 'Galaxy Blaster', diff: 2, constant: 12.6 },
   { title: "ヒャダインのカカカタ☆カタオモイ-C", diff: 3, constant: 12.6 },
   { title: "チェチェ・チェック・ワンツー！", diff: 3, constant: 12.6 },
   { title: "わたしたち魔法乙女です☆", diff: 3, constant: 12.6 },
+  { title: 'ハッピータイフーン', diff: 3, constant: 12.5 },
   { title: "メルティランドナイトメア", diff: 3, constant: 12.5 },
   { title: "R'N'R Monsta", diff: 2, constant: 12.5 },
   { title: "Ai Drew", diff: 2, constant: 14 },
