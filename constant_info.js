@@ -21,11 +21,13 @@ const newMusicTable = [
   // 13
   { title: "Sparkle", diff: 3, constant: 13.6 },
   { title: 'DAWNBREAKER', diff: 3, constant: 13.6 },
+  { title: 'Summer is over', diff: 3, constant: 13.5 },
   { title: "撩乱乙女†無双劇", diff: 3, constant: 13.3 },
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
   { title: 'Stage of Star', diff: 3, constant: 13.2 },
   { title: "Splash Dance!!", diff: 3, constant: 13.1 },
   { title: "Seyana. ～何でも言うことを聞いてくれるアカネチャン～", diff: 3, constant: 13.1 },
+  { title: 'でらっくmaimai♪てんてこまい!', diff: 3, constant: 13 },
 
   // 12+
   { title: "Vibes 2k20", diff: 2, constant: 12.9 },
@@ -37,6 +39,8 @@ const newMusicTable = [
   { title: "INDETERMINATE UNIVERSE", diff: 3, constant: 12.7 },
   { title: 'otorii INNOVATED -[i]3-', diff: 2, constant: 12.7 },
   { title: 'Purple Rays', diff: 3, constant: 12.7 },
+  { title: 'Nameless Story', diff: 3, constant: 12.7 },
+
 
   // 12
   { title: 'Catch the Wave', diff: 3, constant: 12.6 },
@@ -47,14 +51,18 @@ const newMusicTable = [
   { title: 'ハッピータイフーン', diff: 3, constant: 12.5 },
   { title: "メルティランドナイトメア", diff: 3, constant: 12.5 },
   { title: "R'N'R Monsta", diff: 2, constant: 12.5 },
-  { title: "Ai Drew", diff: 2, constant: 14 },
+  { title: "Ai Drew", diff: 2, constant: 12.5 },
+  { title: 'Believe', diff: 3, constant: 12.5 },
+  { title: 'リトルソルジャー', diff: 3, constant: 12.4 },
   { title: "春擬き", diff: 3, constant: 12.4 },
   { title: "ホシノキズナ", diff: 3, constant: 12.4 },
+  { title: 'Contrail ～軌跡～', diff: 3, constant: 12.4 },
   { title: '進め！マイウェイ！', diff: 3, constant: 12.3 },
   { title: 'Trinity Departure', diff: 2, constant: 12.3 },
   { title: "乙女解剖", diff: 3, constant: 12 },
   { title: "Last Kingdom", diff: 2, constant: 12 },
   { title: "エブリデイワールド", diff: 3, constant: 12 },
+  { title: '夏色花火', diff: 3, constant: 12 },
 
   // 11+
   { title: "Dreadnought", diff: 2, constant: 11.9 },
