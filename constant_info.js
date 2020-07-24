@@ -5,6 +5,7 @@ const newMusicTable = [
   { title: 'otorii INNOVATED -[i]3-', diff: 3, constant: 14.7 },
 
   // 14
+  { title: 'AstrøNotes.', diff: 3, constant: 14.6 },
   { title: 'Galaxy Blaster', diff: 3, constant: 14.3 },
   { title: "R'N'R Monsta", diff: 3, constant: 14.1 },
   { title: "Vibes 2k20", diff: 3, constant: 14 },
@@ -22,9 +23,12 @@ const newMusicTable = [
   { title: "Sparkle", diff: 3, constant: 13.6 },
   { title: 'DAWNBREAKER', diff: 3, constant: 13.6 },
   { title: 'Summer is over', diff: 3, constant: 13.5 },
+  { title: '物凄い狂っとるフランちゃんが物凄いうた', diff: 3, constant: 13.4 },
   { title: "撩乱乙女†無双劇", diff: 3, constant: 13.3 },
+  { title: 'アンノウン・マザーグース', diff: 3, constant: 13.3 },
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
   { title: 'Stage of Star', diff: 3, constant: 13.2 },
+  { title: '超常マイマイン', diff: 3, constant: 13.2 },
   { title: "Splash Dance!!", diff: 3, constant: 13.1 },
   { title: "Seyana. ～何でも言うことを聞いてくれるアカネチャン～", diff: 3, constant: 13.1 },
   { title: 'でらっくmaimai♪てんてこまい!', diff: 3, constant: 13 },
@@ -32,17 +36,20 @@ const newMusicTable = [
   // 12+
   { title: "Vibes 2k20", diff: 2, constant: 12.9 },
   { title: "お願いマッスル", diff: 3, constant: 12.9 },
+  { title: 'AstrøNotes.', diff: 2, constant: 12.8 },
   { title: "ピースサイン", diff: 3, constant: 12.8 },
   { title: "Catch the Moment", diff: 3, constant: 12.8 },
   { title: "アンドロイドガール", diff: 3, constant: 12.8 },
   { title: 'ぱくぱく☆がーる', diff: 3, constant: 12.8 },
+  { title: '絆はずっとGrowing Up!!!', diff: 3, constant: 12.7 },
   { title: "INDETERMINATE UNIVERSE", diff: 3, constant: 12.7 },
   { title: 'otorii INNOVATED -[i]3-', diff: 2, constant: 12.7 },
   { title: 'Purple Rays', diff: 3, constant: 12.7 },
   { title: 'Nameless Story', diff: 3, constant: 12.7 },
-
+  { title: 'Deep-Connect', diff: 3, constant: 12.7 },
 
   // 12
+  { title: 'チェチェ・チェック・ワンツー！ ', diff: 3, constant: 12.6 },
   { title: 'Catch the Wave', diff: 3, constant: 12.6 },
   { title: 'Galaxy Blaster', diff: 2, constant: 12.6 },
   { title: "ヒャダインのカカカタ☆カタオモイ-C", diff: 3, constant: 12.6 },
@@ -53,21 +60,22 @@ const newMusicTable = [
   { title: "R'N'R Monsta", diff: 2, constant: 12.5 },
   { title: "Ai Drew", diff: 2, constant: 12.5 },
   { title: 'Believe', diff: 3, constant: 12.5 },
+  { title: 'スイートマジック', diff: 3, constant: 12.4 },
   { title: 'リトルソルジャー', diff: 3, constant: 12.4 },
   { title: "春擬き", diff: 3, constant: 12.4 },
   { title: "ホシノキズナ", diff: 3, constant: 12.4 },
   { title: 'Contrail ～軌跡～', diff: 3, constant: 12.4 },
   { title: '進め！マイウェイ！', diff: 3, constant: 12.3 },
-  { title: 'Trinity Departure', diff: 2, constant: 12.3 },
+  { title: 'Trinity Departure', diff: 2, constant: 12.1 },
   { title: "乙女解剖", diff: 3, constant: 12 },
   { title: "Last Kingdom", diff: 2, constant: 12 },
   { title: "エブリデイワールド", diff: 3, constant: 12 },
   { title: '夏色花火', diff: 3, constant: 12 },
 
-  // 11+
+  // 11+(いる?)
   { title: "Dreadnought", diff: 2, constant: 11.9 },
-  { title: "SmileAgain", diff: 3, constant: 11.7 }
-
+  { title: "SmileAgain", diff: 3, constant: 11.7 },
+  { title: 'Hand in Hand', diff: 3, constant: 11.7 },
 ];
 
 // ベスト枠
