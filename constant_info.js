@@ -8,6 +8,7 @@ const newMusicTable = [
   { title: 'AstrøNotes.', diff: 3, constant: 14.6 },
   { title: 'Galaxy Blaster', diff: 3, constant: 14.3 },
   { title: "R'N'R Monsta", diff: 3, constant: 14.1 },
+  { title: 'Air', diff: 3, constant: 14.1 },
   { title: "Vibes 2k20", diff: 3, constant: 14 },
   { title: "Ai Drew", diff: 3, constant: 14 },
 
@@ -18,6 +19,8 @@ const newMusicTable = [
   { title: "疾走あんさんぶる", diff: 3, constant: 13.8 },
   { title: "Dreadnought", diff: 3, constant: 13.8 },
   { title: 'アマツカミ', diff: 3, constant: 13.8 },
+  { title: 'Destr0yer', diff: 3, constant: 13.8 },
+  { title: '最強 the サマータイム!!!!!', diff: 4, constant: 13.7 },
 
   // 13
   { title: "Sparkle", diff: 3, constant: 13.6 },
@@ -29,6 +32,7 @@ const newMusicTable = [
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
   { title: 'Stage of Star', diff: 3, constant: 13.2 },
   { title: '超常マイマイン', diff: 3, constant: 13.2 },
+  { title: '深海のリトルクライ feat. 土岐麻子', diff: 3, constant: 13.2 },
   { title: "Splash Dance!!", diff: 3, constant: 13.1 },
   { title: "Seyana. ～何でも言うことを聞いてくれるアカネチャン～", diff: 3, constant: 13.1 },
   { title: 'でらっくmaimai♪てんてこまい!', diff: 3, constant: 13 },
@@ -66,6 +70,7 @@ const newMusicTable = [
   { title: "ホシノキズナ", diff: 3, constant: 12.4 },
   { title: 'Contrail ～軌跡～', diff: 3, constant: 12.4 },
   { title: '進め！マイウェイ！', diff: 3, constant: 12.3 },
+  { title: 'Air', diff: 2, constant: 12.2 },
   { title: 'Trinity Departure', diff: 2, constant: 12.1 },
   { title: "乙女解剖", diff: 3, constant: 12 },
   { title: "Last Kingdom", diff: 2, constant: 12 },
