@@ -6,6 +6,7 @@ const newMusicTable = [
 
   // 14
   { title: 'AstrøNotes.', diff: 3, constant: 14.6 },
+  { title: 'End Time', diff: 3, constant: 14.5 },
   { title: 'Galaxy Blaster', diff: 3, constant: 14.3 },
   { title: "R'N'R Monsta", diff: 3, constant: 14.1 },
   { title: 'Air', diff: 3, constant: 14.1 },
@@ -26,6 +27,8 @@ const newMusicTable = [
   { title: "Sparkle", diff: 3, constant: 13.6 },
   { title: 'DAWNBREAKER', diff: 3, constant: 13.6 },
   { title: 'Summer is over', diff: 3, constant: 13.5 },
+  { title: '花たちに希望を', diff: 3, constant: 13.5 },
+  { title: 'ベースラインやってる？笑', diff: 3, constant: 13.4 },
   { title: '物凄い狂っとるフランちゃんが物凄いうた', diff: 3, constant: 13.4 },
   { title: "撩乱乙女†無双劇", diff: 3, constant: 13.3 },
   { title: 'アンノウン・マザーグース', diff: 3, constant: 13.3 },
@@ -38,6 +41,7 @@ const newMusicTable = [
   { title: 'でらっくmaimai♪てんてこまい!', diff: 3, constant: 13 },
 
   // 12+
+  { title: 'ルナティックレッドアイズ', diff: 3, constant: 12.9 },
   { title: "Vibes 2k20", diff: 2, constant: 12.9 },
   { title: "お願いマッスル", diff: 3, constant: 12.9 },
   { title: 'AstrøNotes.', diff: 2, constant: 12.8 },
@@ -59,6 +63,7 @@ const newMusicTable = [
   { title: "ヒャダインのカカカタ☆カタオモイ-C", diff: 3, constant: 12.6 },
   { title: "チェチェ・チェック・ワンツー！", diff: 3, constant: 12.6 },
   { title: "わたしたち魔法乙女です☆", diff: 3, constant: 12.6 },
+  { title: 'Snow in "I love you"', diff: 3, constant: 12.5 },
   { title: 'ハッピータイフーン', diff: 3, constant: 12.5 },
   { title: "メルティランドナイトメア", diff: 3, constant: 12.5 },
   { title: "R'N'R Monsta", diff: 2, constant: 12.5 },
@@ -76,6 +81,7 @@ const newMusicTable = [
   { title: "Last Kingdom", diff: 2, constant: 12 },
   { title: "エブリデイワールド", diff: 3, constant: 12 },
   { title: '夏色花火', diff: 3, constant: 12 },
+  { title: 'NATSUKAGE-夏陰-', diff: 3, constant: 12 },
 
   // 11+(いる?)
   { title: "Dreadnought", diff: 2, constant: 11.9 },
