@@ -6,7 +6,10 @@ const newMusicTable = [
 
   // 14
   { title: 'AstrøNotes.', diff: 3, constant: 14.6 },
+  { title: 'Genesis', diff: 3, constant: 14.6 },
+  { title: 'luna blu', diff: 4, constant: 14.6 },
   { title: 'End Time', diff: 3, constant: 14.5 },
+  { title: 'Glorious Crown (tpz over-Over-OVERCUTE REMIX)', diff: 3, constant: 14.5 },
   { title: 'Galaxy Blaster', diff: 3, constant: 14.3 },
   { title: "R'N'R Monsta", diff: 3, constant: 14.1 },
   { title: 'Air', diff: 3, constant: 14.1 },
@@ -30,6 +33,7 @@ const newMusicTable = [
   { title: '花たちに希望を', diff: 3, constant: 13.5 },
   { title: 'ベースラインやってる？笑', diff: 3, constant: 13.4 },
   { title: '物凄い狂っとるフランちゃんが物凄いうた', diff: 3, constant: 13.4 },
+  { title: 'Iudicium “Apocalypsis Mix”', diff: 3, constant: 13.4 },
   { title: "撩乱乙女†無双劇", diff: 3, constant: 13.3 },
   { title: 'アンノウン・マザーグース', diff: 3, constant: 13.3 },
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
