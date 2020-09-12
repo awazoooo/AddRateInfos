@@ -2,6 +2,8 @@
 // 新曲枠曲
 const newMusicTable = [
   // 14+
+  { title: '脳天直撃', diff: 3, constant: 14.9 },
+  { title: 'Singularity', diff: 3, constant: 14.8 },
   { title: 'otorii INNOVATED -[i]3-', diff: 3, constant: 14.7 },
 
   // 14
@@ -29,6 +31,7 @@ const newMusicTable = [
   // 13
   { title: "Sparkle", diff: 3, constant: 13.6 },
   { title: 'DAWNBREAKER', diff: 3, constant: 13.6 },
+  { title: 'ヒトガタ', diff: 3, constant: 13.5 },
   { title: 'Summer is over', diff: 3, constant: 13.5 },
   { title: '花たちに希望を', diff: 3, constant: 13.5 },
   { title: 'ベースラインやってる？笑', diff: 3, constant: 13.4 },
@@ -36,15 +39,20 @@ const newMusicTable = [
   { title: 'Iudicium “Apocalypsis Mix”', diff: 3, constant: 13.4 },
   { title: "撩乱乙女†無双劇", diff: 3, constant: 13.3 },
   { title: 'アンノウン・マザーグース', diff: 3, constant: 13.3 },
+  { title: '脳天直撃', diff: 2, constant: 13.3 },
+  { title: 'Singularity', diff: 2, constant: 13.2 },
   { title: "ドラマツルギー", diff: 3, constant: 13.2 },
   { title: 'Stage of Star', diff: 3, constant: 13.2 },
   { title: '超常マイマイン', diff: 3, constant: 13.2 },
   { title: '深海のリトルクライ feat. 土岐麻子', diff: 3, constant: 13.2 },
+  { title: '100%ちゅ～学生', diff: 3, constant: 13.2 },
   { title: "Splash Dance!!", diff: 3, constant: 13.1 },
   { title: "Seyana. ～何でも言うことを聞いてくれるアカネチャン～", diff: 3, constant: 13.1 },
+  { title: 'ナンセンス文学', diff: 3, constant: 13.1 },
   { title: 'でらっくmaimai♪てんてこまい!', diff: 3, constant: 13 },
 
   // 12+
+  { title: 'スン(マイル)フラワー～Sun(Mile)Flower', diff: 3, constant: 12.9 },
   { title: 'ルナティックレッドアイズ', diff: 3, constant: 12.9 },
   { title: "Vibes 2k20", diff: 2, constant: 12.9 },
   { title: "お願いマッスル", diff: 3, constant: 12.9 },
@@ -73,6 +81,7 @@ const newMusicTable = [
   { title: "R'N'R Monsta", diff: 2, constant: 12.5 },
   { title: "Ai Drew", diff: 2, constant: 12.5 },
   { title: 'Believe', diff: 3, constant: 12.5 },
+  { title: 'いぇす！ゆゆゆ☆ゆるゆり♪♪', diff: 3, constant: 12.5 },
   { title: 'スイートマジック', diff: 3, constant: 12.4 },
   { title: 'リトルソルジャー', diff: 3, constant: 12.4 },
   { title: "春擬き", diff: 3, constant: 12.4 },
