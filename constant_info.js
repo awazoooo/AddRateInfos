@@ -13,6 +13,7 @@ const newMusicTable = [
   { title: 'End Time', diff: 3, constant: 14.5 },
   { title: 'Glorious Crown (tpz over-Over-OVERCUTE REMIX)', diff: 3, constant: 14.5 },
   { title: 'Galaxy Blaster', diff: 3, constant: 14.3 },
+  { title: 'felys -final remix-', diff: 3, constant: 14.2 },
   { title: "R'N'R Monsta", diff: 3, constant: 14.1 },
   { title: 'Air', diff: 3, constant: 14.1 },
   { title: "Vibes 2k20", diff: 3, constant: 14 },
@@ -20,6 +21,7 @@ const newMusicTable = [
 
   // 13+
   { title: "どどんぱち大音頭", diff: 4, constant: 13.9 },
+  { title: 'PinqPiq (xovevox Remix)', diff: 3, constant: 13.9 },
   { title: "Last Kingdom", diff: 3, constant: 13.9 },
   { title: 'Trinity Departure', diff: 3, constant: 13.9 },
   { title: "疾走あんさんぶる", diff: 3, constant: 13.8 },
@@ -31,6 +33,8 @@ const newMusicTable = [
   // 13
   { title: "Sparkle", diff: 3, constant: 13.6 },
   { title: 'DAWNBREAKER', diff: 3, constant: 13.6 },
+  { title: 'Jorqer', diff: 3, constant: 13.6 },
+  { title: 'スパッと！スパイ＆スパイス', diff: 3, constant: 13.5 },
   { title: 'ヒトガタ', diff: 3, constant: 13.5 },
   { title: 'Summer is over', diff: 3, constant: 13.5 },
   { title: '花たちに希望を', diff: 3, constant: 13.5 },
@@ -56,6 +60,7 @@ const newMusicTable = [
   { title: 'ルナティックレッドアイズ', diff: 3, constant: 12.9 },
   { title: "Vibes 2k20", diff: 2, constant: 12.9 },
   { title: "お願いマッスル", diff: 3, constant: 12.9 },
+  { title: 'ゆるゆり、てんやわんや☆', diff: 3, constant: 12.8 },
   { title: 'AstrøNotes.', diff: 2, constant: 12.8 },
   { title: "ピースサイン", diff: 3, constant: 12.8 },
   { title: "Catch the Moment", diff: 3, constant: 12.8 },
