@@ -250,8 +250,8 @@ import { musicTable, newMusicTable } from './constant_info';
         round2(params.reachableSum) +
         ")"
     );
-    //const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲上位30曲平均", round2(params.allBestAve));
-    //const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "上位30曲下限", round2(params.allBestMin));
+    const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲上位30曲平均", round2(params.allBestAve));
+    const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "上位30曲下限", round2(params.allBestMin));
 
     // 元のTECHNICAL HIGHSCOREを消す
     detailBox.remove();
@@ -261,8 +261,8 @@ import { musicTable, newMusicTable } from './constant_info';
     box.appendChild(bestAveBox);
     box.appendChild(recentAveBox);
     box.appendChild(reachableBox);
-    //box.appendChild(allBestAveBox);
-    //box.appendChild(allBestMinBox);
+    box.appendChild(allBestAveBox);
+    box.appendChild(allBestMinBox);
 
     return box;
   };
