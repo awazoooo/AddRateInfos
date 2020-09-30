@@ -1,4 +1,4 @@
-import { musicTable, newMusicTable } from './constant_info';
+import { constantTable } from './constant_info';
 
 (function() {
   /* 譜面定数データ */
@@ -12,7 +12,6 @@ import { musicTable, newMusicTable } from './constant_info';
        * @masa_9713
   */
 
-  const constantTable = newMusicTable.concat(musicTable);
   const ONGEKI_PREMIUM_RATE_TARGET_URL =
     "https://ongeki-net.com/ongeki-mobile/home/ratingTargetMusic/";
   const ONGEKI_RECORD_URL = "https://ongeki-net.com/ongeki-mobile/record/";
@@ -69,18 +68,8 @@ import { musicTable, newMusicTable } from './constant_info';
   const getConstant = (title, diff, defaultConstant) => {
     const idiff = diffOfString(diff);
 
-    // 新曲の定数
-    const newMusicConstant = newMusicTable.find(
-      m => m.title == title && m.diff == idiff
-    );
-    if (!useDefaultConstant(newMusicConstant))
-      return {
-        constant: newMusicConstant.constant,
-        isDefault: false
-      };
-
-    // 旧曲の定数
-    const musicConstant = musicTable.find(
+    // 定数取得
+    const musicConstant = constantTable.find(
       m => m.title == title && m.diff == idiff
     );
     if (!useDefaultConstant(musicConstant))
@@ -250,8 +239,8 @@ import { musicTable, newMusicTable } from './constant_info';
         round2(params.reachableSum) +
         ")"
     );
-    const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲上位30曲平均", round2(params.allBestAve));
-    const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "上位30曲下限", round2(params.allBestMin));
+    //const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲上位30曲平均", round2(params.allBestAve));
+    //const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "上位30曲下限", round2(params.allBestMin));
 
     // 元のTECHNICAL HIGHSCOREを消す
     detailBox.remove();
@@ -261,8 +250,8 @@ import { musicTable, newMusicTable } from './constant_info';
     box.appendChild(bestAveBox);
     box.appendChild(recentAveBox);
     box.appendChild(reachableBox);
-    box.appendChild(allBestAveBox);
-    box.appendChild(allBestMinBox);
+    //box.appendChild(allBestAveBox);
+    //box.appendChild(allBestMinBox);
 
     return box;
   };
