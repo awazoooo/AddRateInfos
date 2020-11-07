@@ -1,6 +1,20 @@
 // 9/30 R.E.Dに対応
 // 新曲枠曲
 const redMusicTable = [
+  // 11/5追加
+  { title: 'コネクト', diff: 3, constant: 12.5 },
+  { title: 'beautiful tomorrow', diff: 3, constant: 12.3 },
+  { title: '進化系Colors', diff: 3, constant: 12.4 },
+  { title: 'Shiny Smily Story', diff: 3, constant: 12.7 },
+  { title: 'ガヴリールドロップキック', diff: 3, constant: 12.9 },
+  { title: '反撃! 突撃! Back To Back!', diff: 3, constant: 13.2 },
+  { title: 'ツクヨミステップ', diff: 3, constant: 13.5 },
+  { title: 'よいまちカンターレ', diff: 3, constant: 13 },
+  { title: 'この番組はうら若き公務員たちの提供でお送りいたします', diff: 3, constant: 13.3 },
+  { title: 'Oshama Scramble! (Cranky Remix)', diff: 3, constant: 14.1 },
+  { title: 'Jack-the-Ripper◆', diff: 3, constant: 14.5 },
+  { title: '宛城、炎上！！', diff: 3, constant: 14.4 },
+
   // 9/30追加
   { title: 'カラフル', diff: 3, constant: 12.5 },
   { title: 'Forever Friends', diff: 3, constant: 12.4 },
