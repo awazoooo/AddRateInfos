@@ -1,6 +1,23 @@
 // 9/30 R.E.Dに対応
 // 新曲枠曲
 const redMusicTable = [
+  // 12/5追加
+  { title: 'Sign', diff: 3, constant: 12.7 },
+  { title: '名探偵連続殺人事件', diff: 3, constant: 12.5 },
+  { title: '絶対にチョコミントを食べるアオイチャン', diff: 3, constant: 12.7 },
+  { title: 'イカサマライフゲイム', diff: 3, constant: 13.7 },
+  { title: 'ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)', diff: 3, constant: 13.9 },
+  { title: 'Reach for the Stars', diff: 3, constant: 13.8 },
+  { title: 'ヤミツキ', diff: 3, constant: 13.1 },
+  { title: 'キミは“見ていたね”？', diff: 3, constant: 12.4 },
+  { title: 'LiftOff', diff: 3, constant: 14.2 },
+  { title: 'Over Voltage', diff: 3, constant: 12.8 },
+  { title: 'FLUFFY FLASH', diff: 3, constant: 14.8 },
+  { title: 'FLUFFY FLASH', diff: 2, constant: 13.1 },
+  //{ title: 'Let\'s Starry Party！ -高瀬 梨緒ソロver.-', diff: 3, constant: 12.7 },
+  //{ title: 'Let\'s Starry Party！ -結城 莉玖ソロver.-', diff: 3, constant: 12.7 },
+  //{ title: 'Let\'s Starry Party！ -藍原 椿ソロver.-', diff: 3, constant: 12.7 },
+
   // 11/5追加
   { title: 'コネクト', diff: 3, constant: 12.5 },
   { title: 'beautiful tomorrow', diff: 3, constant: 12.3 },
