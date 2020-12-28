@@ -1,6 +1,20 @@
 // 9/30 R.E.Dに対応
 // 新曲枠曲
 const redMusicTable = [
+  // 12/28追加
+  { title: '愛されなくても君がいる', diff: 3, constant: 12.3 },
+  { title: '聖少女サクリファイス', diff: 3, constant: 13 },
+  { title: 'LOVERS', diff: 3, constant: 12.5 },
+  { title: 'Satori ～3rd EyEs (2020 Recall)', diff: 3, constant: 14.3 },
+  { title: 'Paranoia', diff: 3, constant: 13.4 },
+  { title: 'Singularity', diff: 3, constant: 13.9 },
+  { title: 'Grievous Lady', diff: 3, constant: 14.6 },
+  { title: '迷える音色は恋の唄', diff: 3, constant: 13.6 },
+  { title: 'Burning Steel Inferno', diff: 3, constant: 13.7 },
+  //{ title: 'Let\'s Starry Party！ -高瀬 梨緒ソロver.-', diff: 3, constant: 12.7 },
+  //{ title: 'Let\'s Starry Party！ -結城 莉玖ソロver.-', diff: 3, constant: 12.7 },
+  //{ title: 'Let\'s Starry Party！ -藍原 椿ソロver.-', diff: 3, constant: 12.7 },
+
   // 12/5追加
   { title: 'Sign', diff: 3, constant: 12.7 },
   { title: '名探偵連続殺人事件', diff: 3, constant: 12.5 },
