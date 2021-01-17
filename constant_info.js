@@ -1,6 +1,15 @@
 // 9/30 R.E.Dに対応
 // 新曲枠曲
 const redMusicTable = [
+  // 1/14追加
+  { title: 'ビターチョコデコレーション', diff: 3, constant: 12.5 },
+  { title: 'ウミユリ海底譚', diff: 3, constant: 12.5},
+  { title: 'YAMINABE☆PANIC ～ご馳走詰め込みフルコース～', diff: 3, constant: 13.3 },
+  { title: 'Falsum Atlantis.', diff: 3, constant: 14.9 },
+  { title: 'Don\'t Fight The Music', diff: 3, constant: 14.9 },
+  { title: 'Falsum Atlantis.', diff: 2, constant: 13.5 },
+  { title: 'Don\'t Fight The Music', diff: 2, constant: 13.6 },
+
   // 12/28追加
   { title: '愛されなくても君がいる', diff: 3, constant: 12.3 },
   { title: '聖少女サクリファイス', diff: 3, constant: 13 },
