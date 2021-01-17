@@ -62,34 +62,68 @@ import { constantTable } from './constant_info';
     }
   };
 
-  const useDefaultConstant = c => !c || c.constant == 0.0;
+  const useDefaultConstant = arr => arr.length == 0 || c.constant == 0.0;
 
   // 定数表から定数を取得
-  const getConstant = (title, diff, defaultConstant) => {
+  const getConstant = (title, diff, defaultConstantData) => {
     const idiff = diffOfString(diff);
 
     // 定数取得
-    const musicConstant = constantTable.find(
+    // 条件に一致するもの全て取得
+    const musicConstants = constantTable.filter(
       m => m.title == title && m.diff == idiff
     );
-    if (!useDefaultConstant(musicConstant))
-      return {
-        constant: musicConstant.constant,
-        isDefault: false
-      };
-
-    // 定数がまだ本ツールに登録されていない
-    return {
-      constant: defaultConstant,
-      isDefault: true
-    };
+    switch (musicConstants.length) {
+      case 0:
+        // 定数がまだ本ツールに登録されていない場合は難易度帯から算出したデフォルト値を使用
+        return {
+          constant: defaultConstantData.defaultConstant,
+          isDefault: true
+        };
+        break;
+      case 1:
+        // 1つの場合は検索結果を使用
+        return {
+          constant: musicConstants[0].constant,
+          isDefault: false
+        };
+        break;
+      default:
+        // 検索結果が複数の場合はvalid関数を満たす最初の定数を使用
+        for (const musicConstant of musicConstants) {
+          if (defaultConstantData.validFunc(musicConstant.constant)) {
+            return {
+              constant: musicConstant.constant,
+              isDefault: false
+            };
+          }
+        }
+        // 満たすものがなかった場合はデフォルト値(通常はない)
+        return {
+          constant: defaultConstantData.defaultConstant,
+          isDefault: true
+        };
+    }
   };
 
   // 難易度からデフォルト定数(例: 13+なら13.7)を取得
   const getDefaultConstant = diffStr => {
     const diffPair = diffStr.split("+");
-    const constantStr = diffPair.length == 1 ? diffPair[0] : diffPair[0] + ".7";
-    return parseFloat(constantStr);
+    if (diffPair.length == 1) {
+      const defaultConstant = parseInt(diffPair[0]);
+      const validFunc = c => defaultConstant <= c && c < defaultConstant + 0.7;
+      return {
+        defaultConstant,
+        validFunc // XXX: 同名の曲(Singularity)が出たため定数が指定の範囲内にあるかチェックする。ただし同じ難易度帯に出てしまったらこの方法では対応できないため暫定
+      };
+    } else {
+      const defaultConstant = parseFloat(diffPair[0] + ".7");
+      const validFunc = c => defaultConstant <= c && c < parseInt(defaultConstant) + 1;
+      return {
+        defaultConstant,
+        validFunc
+      };
+    }
   };
 
   /* JS utils */
