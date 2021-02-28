@@ -1,20 +1,24 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es6': true,
+  root: true,
+  env: {
+    es6: true,
+    node: true,
   },
-  'extends': [
-    'google',
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 2020, // Node.js 12の場合は2019、他のバージョンのNode.jsを利用している場合は場合は適宜変更する
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.eslint.json']
+  },
+  plugins: [
+    '@typescript-eslint',
   ],
-  'globals': {
-    'Atomics': 'readonly',
-    'SharedArrayBuffer': 'readonly',
-  },
-  'parserOptions': {
-    'ecmaVersion': 2018,
-    'sourceType': 'module',
-  },
-  'rules': {
-      'max-len': [1, 200, 2],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+  ],
+  rules: {
   },
 };

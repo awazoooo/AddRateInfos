@@ -1,6 +1,18 @@
-// 9/30 R.E.Dに対応
-// 新曲枠曲
-const redMusicTable = [
+import { ConstantTable } from './types'
+
+// 譜面定数データ
+// オンゲキスコアツールに感謝
+// https://ongeki-score.net/music
+// データ提供者の方々に感謝
+/*
+  データ提供者Twitter
+  - @Rinsaku471
+  - @RKS49019722
+  - @masa_9713
+*/
+
+// R.E.D新曲枠曲
+const redMusicTable: ConstantTable = [
   // 1/14追加
   { title: 'ビターチョコデコレーション', diff: 3, constant: 12.5 },
   { title: 'ウミユリ海底譚', diff: 3, constant: 12.5},
@@ -87,7 +99,7 @@ const redMusicTable = [
 ];
 
 
-const summerPlusMusicTable = [
+const summerPlusMusicTable: ConstantTable = [
   // 14+
   { title: '脳天直撃', diff: 3, constant: 14.9 },
   { title: 'Singularity', diff: 3, constant: 14.8 },
@@ -144,7 +156,7 @@ const summerPlusMusicTable = [
 ];
 
 // ベスト枠
-const musicTable = [
+const musicTable: ConstantTable = [
   // 14+
   { title: "Opfer", diff: 3, constant: 14.9 },
   { title: "Titania", diff: 3, constant: 14.9 },
@@ -312,6 +324,6 @@ const musicTable = [
   // { title: "ロッキンピンクモンスター", diff: 3, constant: 13 }
 ];
 
-const constantTable = musicTable.concat(summerPlusMusicTable).concat(redMusicTable);
+const constantTable: ConstantTable = musicTable.concat(summerPlusMusicTable).concat(redMusicTable);
 
 export { redMusicTable, summerPlusMusicTable, musicTable, constantTable };
