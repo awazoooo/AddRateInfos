@@ -1,21 +1,10 @@
 import { constantTable } from './constant_info';
+import { FoundConstantInfo, DefaultConstantInfo, RateTargetMusicInfo, RateInfo, MusicRateInfo, SortedElements } from './types';
 
 (function() {
-  /* 譜面定数データ */
-  // オンゲキスコアツールに感謝
-  // https://ongeki-score.net/music
-  // データ提供者の方々に感謝
-  /*
-       データ提供者Twitter
-       * @Rinsaku471
-       * @RKS49019722
-       * @masa_9713
-  */
-
   const ONGEKI_PREMIUM_RATE_TARGET_URL =
     "https://ongeki-net.com/ongeki-mobile/home/ratingTargetMusic/";
   const ONGEKI_RECORD_URL = "https://ongeki-net.com/ongeki-mobile/record/";
-  // const TOOLNAME = 'レート情報追加ツール';
 
   /* 定数計算関連 */
 
@@ -28,7 +17,7 @@ import { constantTable } from './constant_info';
 
   // TODO: RANKAの場合の追加
   // MEMO: RANKAAとAAAは自力で確かめられない
-  const calcRate = (constant, score) => {
+  const calcRate = (constant: number, score: number): number => {
     if (score >= RANKSSSplus) {
       return constant + 2.0;
     } else if (score >= RANKSSS) {
@@ -46,7 +35,7 @@ import { constantTable } from './constant_info';
   };
 
   // 難易度に対応する数値を返す
-  const diffOfString = str => {
+  const diffOfString = (str: string): number => {
     switch (str) {
       case "lunatic":
         return 4;
@@ -62,10 +51,12 @@ import { constantTable } from './constant_info';
     }
   };
 
-  const useDefaultConstant = arr => arr.length == 0 || c.constant == 0.0;
-
   // 定数表から定数を取得
-  const getConstant = (title, diff, defaultConstantData) => {
+  const getConstant = (
+    title: string,
+    diff: string,
+    defaultConstantData: DefaultConstantInfo
+  ) : FoundConstantInfo => {
     const idiff = diffOfString(diff);
 
     // 定数取得
@@ -107,18 +98,22 @@ import { constantTable } from './constant_info';
   };
 
   // 難易度からデフォルト定数(例: 13+なら13.7)を取得
-  const getDefaultConstant = diffStr => {
+  const getDefaultConstant = (diffStr: string): DefaultConstantInfo => {
     const diffPair = diffStr.split("+");
     if (diffPair.length == 1) {
       const defaultConstant = parseInt(diffPair[0]);
-      const validFunc = c => defaultConstant <= c && c < defaultConstant + 0.7;
+      // XXX: 同名の曲(Singularity)が出たため定数が指定の範囲内にあるかチェックする
+      // ただし同じ難易度帯に出てしまったらこの方法では対応できないため暫定対応
+      const validFunc = (c: number): boolean =>
+        defaultConstant <= c && c < defaultConstant + 0.7;
       return {
         defaultConstant,
-        validFunc // XXX: 同名の曲(Singularity)が出たため定数が指定の範囲内にあるかチェックする。ただし同じ難易度帯に出てしまったらこの方法では対応できないため暫定
+        validFunc
       };
     } else {
-      const defaultConstant = parseFloat(diffPair[0] + ".7");
-      const validFunc = c => defaultConstant <= c && c < parseInt(defaultConstant) + 1;
+      const defaultConstant: number = parseFloat(diffPair[0] + ".7");
+      const validFunc = (c: number): boolean =>
+        defaultConstant <= c && c < parseInt(String(defaultConstant)) + 1;
       return {
         defaultConstant,
         validFunc
@@ -131,13 +126,13 @@ import { constantTable } from './constant_info';
   // 小数点以下2位までに丸める
   // 以下の方法だと round2(16.4) -> 16.39 になってしまうため，文字列でうまいことする
   // const round2 = n => Math.floor(n * Math.pow(10, 2)) / Math.pow(10, 2);
-  const round2 = n => {
-    const numStrs = (n + '').split('.');
+  const round2 = (n: number): number => {
+    const numStrs = String(n).split('.');
     // 整数
     if (numStrs.length === 1)
       return n;
 
-    // 少数
+    // 小数
     if (numStrs[1].length < 3) {
       return n;
     } else {
@@ -147,27 +142,28 @@ import { constantTable } from './constant_info';
 
   // 文字列からカンマを除く
   // removeComma("1,000,000") -> "1000000")
-  const removeComma = s => s.split(",").join("");
+  const removeComma = (s: string): string => s.split(",").join("");
+
 
   /* HTML操作 */
-
   // boxにstr:valueという情報を追加して返す
-  const makeInfoBox = (box, str, value, isItalic = false) => {
+  const makeInfoBox = (box: Element, str: string, value: string, isItalic = false): HTMLElement => {
     box.getElementsByClassName("score_label")[0].textContent = str;
     box.getElementsByClassName("f_14")[0].textContent = value;
-    if (isItalic)
-      box.getElementsByClassName("f_14")[0].style.fontStyle = "italic";
+    if (isItalic) {
+      const fontTargetElement: HTMLElement = box.getElementsByClassName("f_14")[0];
+      fontTargetElement.style.fontStyle = "italic";
+    }
     return box;
   };
 
   // 1曲ごとの処理
-  const modifyOneMusicHTML = x => {
+  const modifyOneMusicHTML = (x: Element): MusicRateInfo => {
     // DOMからデータを取得
-    const musicTitle = x.getElementsByClassName("music_label")[0].textContent;
-    const score = x.getElementsByClassName("f_14")[0].textContent;
-    const diff = x.classList.value.split(" ")[1].split("_")[0];
-    // musicDiff: 13, 13+などのこと(雑コメ)
-    const musicDiff = x.getElementsByClassName("score_level")[0].textContent;
+    const musicTitle: string = x.getElementsByClassName("music_label")[0].textContent;
+    const score: string = x.getElementsByClassName("f_14")[0].textContent;
+    const diff: string = x.classList.value.split(" ")[1].split("_")[0];
+    const musicDiff: string = x.getElementsByClassName("score_level")[0].textContent;
 
     // 定数とレート値を算出
     const musicConstantInfo = getConstant(
@@ -177,20 +173,20 @@ import { constantTable } from './constant_info';
     );
     // スコアにはカンマがついた形(1,000,000)となっているため，除く+数値に変換してcalcRateに渡す
     // 計算した値は丸める
-    const musicRate = round2(
+    const musicRate: number = round2(
       calcRate(musicConstantInfo.constant, Number(removeComma(score)))
     );
 
 
     // 情報を表示するBoxを作成
-    const scoreBox = x.getElementsByClassName("w_260")[0];
-    const constantBox = makeInfoBox(
+    const scoreBox: HTMLElement = x.getElementsByClassName("w_260")[0];
+    const constantBox: HTMLElement = makeInfoBox(
       scoreBox.cloneNode(true),
       "MUSIC CONSTANT",
       musicConstantInfo.constant,
       musicConstantInfo.isDefault
     );
-    const rateBox = makeInfoBox(
+    const rateBox: HTMLElement = makeInfoBox(
       scoreBox.cloneNode(true),
       "MUSIC RATE",
       musicRate,
@@ -213,12 +209,12 @@ import { constantTable } from './constant_info';
 
   // ベスト平均とか到達可能とかを計算
   // 曲数が足りなくても規定の曲数で割る
-  const calcParams = d => {
-    const add = (x, y) => x + y;
+  const calcParams = (d: RateTargetMusicInfo, topRate: number): RateInfo => {
+    const add = (x: number, y: number): number => x + y;
     const bestSum = d.bests.reduce(add);
     const recentSum = d.recents.reduce(add);
     const newSum = d.news.reduce(add);
-    const reachableSum = bestSum + d.topRate * 10 + newSum;
+    const reachableSum = bestSum + topRate * 10 + newSum;
 
     // 全曲レート値上位30曲
     const allBests = d.bests
@@ -241,37 +237,35 @@ import { constantTable } from './constant_info';
   };
 
   // ベスト平均などを表示するBox
-  const makeParamBox = (box, params) => {
+  const makeParamBox = (box: HTMLElement, params: RateInfo): HTMLElement => {
     // 各パラメータを表示するBox
-    const detailBox = box.getElementsByClassName("w_260")[0];
+    const detailBox: HTMLElement = box.getElementsByClassName("w_260")[0];
     // font size
-    detailBox
+    const fontTargetElement: HTMLElement = detailBox
       .getElementsByClassName("score_value")[0]
-      .getElementsByClassName("f_14")[0].style.fontSize = "13px";
+      .getElementsByClassName("f_14")[0];
+    fontTargetElement.style.fontSize = "13px";
 
     // 適当なboxをコピーして使用
-    const newAveBox = makeInfoBox(
+    const newAveBox: HTMLElement = makeInfoBox(
       detailBox.cloneNode(true),
       `新曲枠平均 (${params.nNew}/${NNEWMUSIC})`,
-      round2(params.newSum / NNEWMUSIC) + "(" + round2(params.newSum) + ")"
+      `${round2(params.newSum / NNEWMUSIC)}(${round2(params.newSum)})`
     );
-    const bestAveBox = makeInfoBox(
+    const bestAveBox: HTMLElement = makeInfoBox(
       detailBox.cloneNode(true),
       `ベスト枠平均 (${params.nBest}/${NBEST})`,
-      round2(params.bestSum / NBEST) + "(" + round2(params.bestSum) + ")"
+      `${round2(params.bestSum / NBEST)}(${round2(params.bestSum)})`
     );
-    const recentAveBox = makeInfoBox(
+    const recentAveBox: HTMLElement = makeInfoBox(
       detailBox.cloneNode(true),
       `リセント枠平均 (${params.nRecent}/${NRECENT})`,
-      round2(params.recentSum / NRECENT) + "(" + round2(params.recentSum) + ")"
+      `${round2(params.recentSum / NRECENT)}(${round2(params.recentSum)})`
     );
-    const reachableBox = makeInfoBox(
+    const reachableBox: HTMLElement = makeInfoBox(
       detailBox.cloneNode(true),
       "到達可能レート",
-      round2(params.reachableSum / NALL) +
-        "(" +
-        round2(params.reachableSum) +
-        ")"
+      `${round2(params.reachableSum / NALL)}(${round2(params.reachableSum)})`
     );
     //const allBestAveBox = makeInfoBox(detailBox.cloneNode(true), "全曲上位30曲平均", round2(params.allBestAve));
     //const allBestMinBox = makeInfoBox(detailBox.cloneNode(true), "上位30曲下限", round2(params.allBestMin));
@@ -291,34 +285,36 @@ import { constantTable } from './constant_info';
   };
 
   // レーティング対象曲のページに定数とレート値を追加
-  const addConstantAndRate = () => {
+  const addConstantAndRate = (): void => {
     // 楽曲Boxを取得
     // 先頭6つは余分データ.slice(6);
-    const musics = Array.prototype.slice
-      .call(
-        document.getElementsByClassName("wrapper main_wrapper t_c")[0].children
-      )
-      .slice(6);
+    const musicElements: HTMLCollection = document.getElementsByClassName("wrapper main_wrapper t_c")[0].children;
+    const musics: Element[] = Array.from(musicElements).slice(6);
 
     // ベスト平均などを表示するBox
     // 最初の楽曲Boxを雑にコピー
-    let paramBox = musics[0].cloneNode(true);
+    let paramBox: HTMLElement = musics[0].cloneNode(true);
     // レベル表示を消す
     paramBox.getElementsByClassName("score_level")[0].textContent = " ";
     // 曲表示の部分を書き換え
     paramBox.getElementsByClassName("music_label")[0].textContent =
       "レート情報";
 
-    const acc = { bests: [], recents: [], news: [], topRate: null };
+    const bests: number[] = [];
+    const recents: number[] = [];
+    const news: number[] = [];
+    let topRate = 0.0;
 
     // オンゲキNETの並び順に合わせる
     const paramList = ["news", "bests", "recents"];
     let paramIdx = 0;
+    let key = paramList[paramIdx];
 
     for (const obj of musics) {
       // m_15が 新曲/ベスト/リセント/候補 の区切り
       if (obj.classList.contains("m_15")) {
         paramIdx += 1;
+        key = paramList[paramIdx];
         continue;
       }
 
@@ -329,45 +325,56 @@ import { constantTable } from './constant_info';
 
       // MEMO: ここまで残ってるobjはmusicBoxだけ
       // 楽曲Boxの処理 + データ集計処理
-      const info = modifyOneMusicHTML(obj);
+      const info: MusicRateInfo = modifyOneMusicHTML(obj);
       if (paramIdx >= 3) {
         continue;
       }
-      acc[paramList[paramIdx]].push(info.rate);
+      // 型チェック通過のため、
+      switch (key) {
+        case 'news':
+          news.push(info.rate);
+          break;
+        case 'bests':
+          bests.push(info.rate);
+          break;
+        case 'recents':
+          recents.push(info.rate);
+          break;
+      }
 
       // topRateの取得
-      if (paramIdx == 1 && acc.topRate == null && info.diff != 4) {
-        acc.topRate = info.rate;
+      if (paramIdx == 1 && topRate == 0.0 && info.diff != 4) {
+        topRate = info.rate;
       }
     }
 
     // ベスト平均などを計算
-    const params = calcParams(acc);
+    const params = calcParams({ bests, news, recents }, topRate);
     paramBox = makeParamBox(paramBox, params);
     paramBox.classList.remove("master_score_back");
 
     // ベスト枠平均などのパラメータを「レーティング対象曲(ベスト)」の上に追加
     // 追加する場所の親を取得
-    const ref = document.getElementsByClassName("main_wrapper")[0];
+    const ref: Element = document.getElementsByClassName("main_wrapper")[0];
     // 追加する場所の下を取得
-    const underRef = document.getElementsByClassName("m_15")[1];
+    const underRef: Element = document.getElementsByClassName("m_15")[1];
     // 追加
     ref.insertBefore(paramBox, underRef);
   };
 
   // レベル別一覧画面でテクニカルスコア順降順ソート
-  const technicalScoreSort = () => {
+  const technicalScoreSort = (): void => {
     [].slice
       .call(document.getElementsByClassName("basic_btn"))
-      .map(d => {
-        const score = d.getElementsByClassName("score_value")[2];
+      .map((d: HTMLElement): SortedElements => {
+        const score: Element = d.getElementsByClassName("score_value")[2];
         return {
           dom: d,
-          value: score ? Number(score.textContent.split(",").join("")) : 0
+          value: score ? Number((score.textContent || "0").split(",").join("")) : 0
         };
       })
-      .sort((a, b) => b.value - a.value)
-      .forEach(v =>
+      .sort((a: SortedElements, b: SortedElements): number => b.value - a.value)
+      .forEach((v: SortedElements) =>
         document.getElementsByClassName("container3")[0].appendChild(v.dom)
       );
   };
@@ -380,7 +387,7 @@ import { constantTable } from './constant_info';
     "musicLevel"
   ];
 
-  const main = () => {
+  const main = (): void => {
     const url = location.href;
     if (url == ONGEKI_PREMIUM_RATE_TARGET_URL) {
       alert("定数とレート値を計算します");
@@ -399,7 +406,7 @@ import { constantTable } from './constant_info';
     }
     alert("現在のURLが正しくありません...");
     alert(
-      "レート値計算する場合は，「プレイヤーデータ詳細」から「レーティング対象曲」タブを選択して下さい」"
+      "レート値を計算する場合は，「プレイヤーデータ詳細」から「レーティング対象曲」タブを選択して下さい」"
     );
     return;
   };
