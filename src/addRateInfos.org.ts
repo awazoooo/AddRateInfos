@@ -54,15 +54,13 @@ import { FoundConstantInfo, DefaultConstantInfo, RateTargetMusicInfo, RateInfo, 
   // 定数表から定数を取得
   const getConstant = (
     title: string,
-    diff: string,
+    diff: number,
     defaultConstantData: DefaultConstantInfo
   ) : FoundConstantInfo => {
-    const idiff = diffOfString(diff);
 
-    // 定数取得
     // 条件に一致するもの全て取得
     const musicConstants = constantTable.filter(
-      m => m.title == title && m.diff == idiff
+      m => m.title == title && m.diff == diff
     );
     switch (musicConstants.length) {
       case 0:
@@ -146,12 +144,20 @@ import { FoundConstantInfo, DefaultConstantInfo, RateTargetMusicInfo, RateInfo, 
 
 
   /* HTML操作 */
+
+  // Copy Node
+  const copyNode = (element: HTMLElement | Element): Element => {
+    // HACK: Casting Node to Element
+    return <Element>element.cloneNode(true);
+  }
+
   // boxにstr:valueという情報を追加して返す
-  const makeInfoBox = (box: Element, str: string, value: string, isItalic = false): HTMLElement => {
+  const makeInfoBox = (box: Element, str: string, value: string, isItalic = false): Element => {
     box.getElementsByClassName("score_label")[0].textContent = str;
     box.getElementsByClassName("f_14")[0].textContent = value;
     if (isItalic) {
-      const fontTargetElement: HTMLElement = box.getElementsByClassName("f_14")[0];
+      // HACK: Casting Element to HTMLElement
+      const fontTargetElement: HTMLElement = <HTMLElement>box.getElementsByClassName("f_14")[0];
       fontTargetElement.style.fontStyle = "italic";
     }
     return box;
@@ -160,10 +166,10 @@ import { FoundConstantInfo, DefaultConstantInfo, RateTargetMusicInfo, RateInfo, 
   // 1曲ごとの処理
   const modifyOneMusicHTML = (x: Element): MusicRateInfo => {
     // DOMからデータを取得
-    const musicTitle: string = x.getElementsByClassName("music_label")[0].textContent;
-    const score: string = x.getElementsByClassName("f_14")[0].textContent;
-    const diff: string = x.classList.value.split(" ")[1].split("_")[0];
-    const musicDiff: string = x.getElementsByClassName("score_level")[0].textContent;
+    const musicTitle: string = x.getElementsByClassName("music_label")[0].textContent || '';
+    const score: string = x.getElementsByClassName("f_14")[0].textContent || '';
+    const diff: number = diffOfString(x.classList.value.split(" ")[1].split("_")[0]);
+    const musicDiff: string = x.getElementsByClassName("score_level")[0].textContent || '';
 
     // 定数とレート値を算出
     const musicConstantInfo = getConstant(
@@ -171,6 +177,7 @@ import { FoundConstantInfo, DefaultConstantInfo, RateTargetMusicInfo, RateInfo, 
       diff,
       getDefaultConstant(musicDiff)
     );
+
     // スコアにはカンマがついた形(1,000,000)となっているため，除く+数値に変換してcalcRateに渡す
     // 計算した値は丸める
     const musicRate: number = round2(
@@ -179,17 +186,17 @@ import { FoundConstantInfo, DefaultConstantInfo, RateTargetMusicInfo, RateInfo, 
 
 
     // 情報を表示するBoxを作成
-    const scoreBox: HTMLElement = x.getElementsByClassName("w_260")[0];
-    const constantBox: HTMLElement = makeInfoBox(
-      scoreBox.cloneNode(true),
+    const scoreBox: Element = x.getElementsByClassName("w_260")[0];
+    const constantBox: Element = makeInfoBox(
+      copyNode(scoreBox),
       "MUSIC CONSTANT",
-      musicConstantInfo.constant,
+      musicConstantInfo.constant.toString(),
       musicConstantInfo.isDefault
     );
-    const rateBox: HTMLElement = makeInfoBox(
-      scoreBox.cloneNode(true),
+    const rateBox: Element = makeInfoBox(
+      copyNode(scoreBox),
       "MUSIC RATE",
-      musicRate,
+      musicRate.toString(),
       musicConstantInfo.isDefault
     );
 
@@ -239,31 +246,32 @@ import { FoundConstantInfo, DefaultConstantInfo, RateTargetMusicInfo, RateInfo, 
   // ベスト平均などを表示するBox
   const makeParamBox = (box: HTMLElement, params: RateInfo): HTMLElement => {
     // 各パラメータを表示するBox
-    const detailBox: HTMLElement = box.getElementsByClassName("w_260")[0];
+    const detailBox: Element = box.getElementsByClassName("w_260")[0];
     // font size
-    const fontTargetElement: HTMLElement = detailBox
+    // HACK: Casting Element to HTMLElement
+    const fontTargetElement: HTMLElement = <HTMLElement>detailBox
       .getElementsByClassName("score_value")[0]
       .getElementsByClassName("f_14")[0];
     fontTargetElement.style.fontSize = "13px";
 
     // 適当なboxをコピーして使用
-    const newAveBox: HTMLElement = makeInfoBox(
-      detailBox.cloneNode(true),
+    const newAveBox: Element = makeInfoBox(
+      copyNode(detailBox),
       `新曲枠平均 (${params.nNew}/${NNEWMUSIC})`,
       `${round2(params.newSum / NNEWMUSIC)}(${round2(params.newSum)})`
     );
-    const bestAveBox: HTMLElement = makeInfoBox(
-      detailBox.cloneNode(true),
+    const bestAveBox: Element = makeInfoBox(
+      copyNode(detailBox),
       `ベスト枠平均 (${params.nBest}/${NBEST})`,
       `${round2(params.bestSum / NBEST)}(${round2(params.bestSum)})`
     );
-    const recentAveBox: HTMLElement = makeInfoBox(
-      detailBox.cloneNode(true),
+    const recentAveBox: Element = makeInfoBox(
+      copyNode(detailBox),
       `リセント枠平均 (${params.nRecent}/${NRECENT})`,
       `${round2(params.recentSum / NRECENT)}(${round2(params.recentSum)})`
     );
-    const reachableBox: HTMLElement = makeInfoBox(
-      detailBox.cloneNode(true),
+    const reachableBox: Element = makeInfoBox(
+      copyNode(detailBox),
       "到達可能レート",
       `${round2(params.reachableSum / NALL)}(${round2(params.reachableSum)})`
     );
@@ -293,7 +301,7 @@ import { FoundConstantInfo, DefaultConstantInfo, RateTargetMusicInfo, RateInfo, 
 
     // ベスト平均などを表示するBox
     // 最初の楽曲Boxを雑にコピー
-    let paramBox: HTMLElement = musics[0].cloneNode(true);
+    let paramBox: HTMLElement = <HTMLElement>musics[0].cloneNode(true);
     // レベル表示を消す
     paramBox.getElementsByClassName("score_level")[0].textContent = " ";
     // 曲表示の部分を書き換え

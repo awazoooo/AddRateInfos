@@ -13,6 +13,29 @@ import { ConstantTable } from './types'
 
 // R.E.D新曲枠曲
 const redMusicTable: ConstantTable = [
+  // 2/28 追加
+  { title: 'クライングハート', diff: 3, constant: 12.4 },
+  { title: 'STORIA', diff: 3, constant: 12.8 },
+  { title: 'カナリア', diff: 3, constant: 14 },
+  { title: 'だから僕は音楽を辞めた', diff: 3, constant: 12.9 },
+  { title: 'タイムマシン', diff: 3, constant: 12.1 },
+  { title: 'ツギハギスタッカート', diff: 3, constant: 12.6 },
+  { title: '太陽系デスコ', diff: 3, constant: 12.3 },
+  { title: '吉原ラメント', diff: 3, constant: 13.1 },
+  { title: 'スクランブル交際', diff: 3, constant: 12.8 },
+  { title: '命に嫌われている', diff: 3, constant: 12.7 },
+  { title: '天狗の落とし文 feat. ｙｔｒ', diff: 3, constant: 13.6 },
+  { title: '明星ロケット', diff: 3, constant: 12.6 },
+  { title: 'Climax', diff: 3, constant: 14.6 },
+  { title: 'Ruler Count, Zero', diff: 3, constant: 13.8 },
+  { title: 'Say Goodbye', diff: 3, constant: 13.6 },
+  { title: 'fulgente (flip-side color mix)', diff: 3, constant: 13.5 },
+//  { title: 'Let\'s Starry Party！ -高瀬 梨緒ソロver.-', diff: 3, constant: 12.7 },
+//  { title: 'Let\'s Starry Party！ -結城 莉玖ソロver.-', diff: 3, constant: 12.7 },
+//{   title: 'Let\'s Starry Party！ -藍原 椿ソロver.-', diff: 3, constant: 12.7 },
+  { title: 'Kiss Me Kiss -桜井 春菜ソロver.-', diff: 3, constant: 12.7 },
+  { title: 'Kiss Me Kiss -早乙女 彩華ソロver.-', diff: 3, constant: 12.7 },
+
   // 1/14追加
   { title: 'ビターチョコデコレーション', diff: 3, constant: 12.5 },
   { title: 'ウミユリ海底譚', diff: 3, constant: 12.5},
