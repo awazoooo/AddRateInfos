@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/addRateInfos.org.ts',
+    entry: ['./src/addRateInfos.org.ts', './src/constant_info.ts'],
 
     output: {
         filename: 'addRateInfos.js',

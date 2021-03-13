@@ -13,6 +13,15 @@ import { ConstantTable } from './types'
 
 // R.E.D新曲枠曲
 const redMusicTable: ConstantTable = [
+  // 3/13 追加
+  { title: 'SAKURAスキップ', diff: 3, constant: 12.2 },
+  { title: 'JUMPin\' JUMP UP!!!!', diff: 3, constant: 12.5 },
+  { title: 'ワタシConnect*', diff: 3, constant: 12.7 },
+  { title: 'Bad Apple!! feat.nomico (豚乙女 Ver.)', diff: 3, constant: 13.4 },
+  { title: 'See The Light', diff: 3, constant: 13.8 },
+  { title: '美夜月鏡', diff: 3, constant: 14.3 },
+  { title: '美夜月鏡', diff: 2, constant: 13 },
+
   // 2/28 追加
   { title: 'クライングハート', diff: 3, constant: 12.4 },
   { title: 'STORIA', diff: 3, constant: 12.8 },
